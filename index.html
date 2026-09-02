@@ -43,7 +43,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   
-  ```html
 <style>
 /* =========================================================
    GLOBAL
@@ -142,8 +141,8 @@ button {
 
   background: rgba(2, 12, 38, 0.75);
 
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 
   box-shadow: 0 0 20px rgba(1, 32, 37, 0.3);
 
@@ -190,8 +189,8 @@ button {
 .glass-panel {
   background: rgb(2 12 38 / 94%);
 
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 
   border: 2px solid rgba(185, 211, 223, 0.25);
 
@@ -205,13 +204,88 @@ button {
    ========================================================= */
 
 .glass-card {
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  --mx: 50%;
+  --my: 50%;
+  --light-color: rgba(56, 189, 248, 1);
+
+  position: relative;
+  isolation: isolate;
+
+  overflow: hidden;
+
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 
   border: 2px solid rgba(146, 163, 170, 0.2);
 
   transition:
-    all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.glass-card::before {
+  content: "";
+
+  position: absolute;
+  inset: -2px;
+
+  padding: 2px;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      90px 90px at var(--mx) var(--my),
+      var(--light-color) 0%,
+      rgba(56, 189, 248, 0.55) 12%,
+      rgba(56, 189, 248, 0.18) 30%,
+      transparent 65%
+    );
+
+  /*
+    Keep only the border portion visible.
+  */
+  -webkit-mask:    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.2s ease;
+}
+
+.glass-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  left: var(--mx);
+  top: var(--my);
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(56, 189, 248, 0.10),
+      transparent 70%
+    );
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
 }
 
 .glass-card:hover {
@@ -220,7 +294,13 @@ button {
   transform: translateY(-2px);
 
   box-shadow:
-    0 12px 30px -5px rgba(6, 182, 212, 0.3);
+    0 12px 30px -5px rgba(6, 182, 212, 0.3),
+    0 0 35px rgba(56, 189, 248, 0.08);
+}
+
+.glass-card:hover::before,
+.glass-card:hover::after {
+  opacity: 1;
 }
 
 
@@ -1194,7 +1274,6 @@ sun: {
           bg-slate-950/80
           border border-slate-700/70
           shadow-2xl
-          backdrop-blur-xl
         ">
 
           <!-- Decorative glow -->
@@ -1454,7 +1533,7 @@ sun: {
                   py-3.5
                   px-4
                   rounded-xl
-                  bg-slate-900/70
+                  
                   hover:bg-slate-800/80
                   text-slate-200
                   font-bold
@@ -1807,7 +1886,7 @@ saturn: {
   <div class="absolute -inset-1 rounded-[2rem] bg-gradient-to-r from-amber-400/20 via-yellow-300/10 to-cyan-400/20 blur-xl opacity-70"></div>
 
   <!-- Main Card -->
-  <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 backdrop-blur-2xl shadow-2xl">
+  <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 shadow-2xl">
 
     <!-- Decorative Glow -->
     <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-amber-400/10 blur-3xl pointer-events-none"></div>
@@ -2002,7 +2081,7 @@ saturn: {
         >
           <div class="absolute inset-0 rounded-full bg-white/20 blur-lg opacity-0 group-hover:opacity-100 transition"></div>
 
-          <div class="relative h-11 w-11 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:scale-110 transition">
+          <div class="relative h-11 w-11 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:scale-110 transition">
             <i class="fab fa-github"></i>
           </div>
         </a>
@@ -2017,7 +2096,7 @@ saturn: {
         >
           <div class="absolute inset-0 rounded-full bg-blue-400/20 blur-lg opacity-0 group-hover:opacity-100 transition"></div>
 
-          <div class="relative h-11 w-11 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:scale-110 transition">
+          <div class="relative h-11 w-11 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:scale-110 transition">
             <i class="fab fa-linkedin"></i>
           </div>
         </a>
@@ -2030,7 +2109,7 @@ saturn: {
         >
           <div class="absolute inset-0 rounded-full bg-yellow-300/20 blur-lg opacity-0 group-hover:opacity-100 transition"></div>
 
-          <div class="relative h-11 w-11 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:scale-110 transition">
+          <div class="relative h-11 w-11 rounded-full bg-white/10 border border-white/10 flex items-center justify-center hover:scale-110 transition">
             <i class="fas fa-envelope"></i>
           </div>
         </a>
@@ -2411,7 +2490,7 @@ render: () => `
                   py-3.5
                   px-4
                   rounded-xl
-                  bg-slate-900/70
+                  
                   hover:bg-slate-800/80
                   text-red-300
                   font-bold
@@ -2495,7 +2574,7 @@ earth: {
           rounded-2xl
           bg-white/[0.025]
           border border-white/10
-          backdrop-blur-md
+          -md
         ">
 
           <div class="relative p-4 sm:p-6 lg:p-7">
@@ -2546,7 +2625,7 @@ earth: {
               <div class="
                 glass-shake
                 rounded-2xl
-                bg-slate-900/70
+                
                 border border-slate-700/70
                 p-5
               ">
@@ -2741,7 +2820,7 @@ earth: {
               <div class="
                 glass-shake
                 rounded-2xl
-                bg-slate-900/70
+                
                 border border-slate-700/70
                 p-5
               ">
@@ -3265,7 +3344,7 @@ earth: {
                   py-3.5
                   px-4
                   rounded-xl
-                  bg-slate-900/70
+                  
                   hover:bg-slate-800/80
                   text-slate-200
                   font-bold
@@ -3368,7 +3447,7 @@ moon: {
           rounded-2xl
           bg-white/[0.025]
           border border-white/10
-          backdrop-blur-md
+          -md
         ">
 
           <div class="relative p-4 sm:p-6 lg:p-7">
@@ -3462,7 +3541,7 @@ moon: {
                 <div class="
                   glass-shake
                   rounded-2xl
-                  bg-slate-900/70
+                  
                   border border-slate-700/70
                   p-4 sm:p-5
                 ">
@@ -3607,7 +3686,7 @@ moon: {
                 <div class="
                   glass-shake
                   rounded-2xl
-                  bg-slate-900/70
+                  
                   border border-slate-700/70
                   p-4 sm:p-5
                 ">
@@ -3749,7 +3828,7 @@ moon: {
                 <div class="
                   glass-shake
                   rounded-2xl
-                  bg-slate-900/70
+                  
                   border border-slate-700/70
                   p-4 sm:p-5
                 ">
@@ -3870,7 +3949,7 @@ moon: {
                   py-3.5
                   px-4
                   rounded-xl
-                  bg-slate-900/70
+                  
                   hover:bg-slate-800/80
                   text-slate-200
                   font-bold
@@ -3975,7 +4054,7 @@ mars: {
           rounded-2xl
           bg-white/[0.025]
           border border-white/10
-          backdrop-blur-md
+          -md
         ">
 
           <div class="relative p-4 sm:p-6 lg:p-7">
@@ -4070,7 +4149,7 @@ mars: {
                 <div class="
                   glass-shake
                   rounded-2xl
-                  bg-slate-900/70
+                  
                   border border-slate-700/70
                   p-4 sm:p-5
                 ">
@@ -4231,7 +4310,7 @@ mars: {
                 <div class="
                   glass-shake
                   rounded-2xl
-                  bg-slate-900/70
+                  
                   border border-slate-700/70
                   p-4 sm:p-5
                 ">
@@ -4388,7 +4467,7 @@ mars: {
                 <div class="
                   glass-shake
                   rounded-2xl
-                  bg-slate-900/70
+                  
                   border border-slate-700/70
                   p-4 sm:p-5
                 ">
@@ -4559,7 +4638,7 @@ mars: {
                   py-3.5
                   px-4
                   rounded-xl
-                  bg-slate-900/70
+                  
                   hover:bg-slate-800/80
                   text-red-300
                   font-bold
@@ -4858,7 +4937,7 @@ jupiter: {
                   py-3.5
                   px-4
                   rounded-xl
-                  bg-slate-900/70
+                  
                   hover:bg-slate-800/80
                   text-red-300
                   font-bold
@@ -4927,7 +5006,7 @@ neptune: {
       <div class="relative overflow-hidden rounded-3xl
                   border border-white/10
                   bg-white/[0.04]
-                  backdrop-blur-xl
+                  -xl
                   p-6 sm:p-8">
 
         <!-- Glow -->
@@ -8292,6 +8371,31 @@ window.addEventListener(
 );
 
 
+document.querySelectorAll(".glass-card").forEach((card) => {
+
+  card.addEventListener("pointermove", (event) => {
+
+    const rect = card.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    card.style.setProperty("--mx", `${x}px`);
+    card.style.setProperty("--my", `${y}px`);
+
+  });
+
+  card.addEventListener("pointerleave", () => {
+
+    card.style.setProperty("--mx", "50%");
+    card.style.setProperty("--my", "50%");
+
+  });
+
+});
+
+
+
 /* =========================================================
    EMAIL JS
    ========================================================= */
@@ -8385,9 +8489,10 @@ if (
               }
             }
           );
+      
+        }
+        );  
       }
-        );
-  }
 }
   </script>
 </body>
