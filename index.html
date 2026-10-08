@@ -44,10 +44,6 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   
 <style>
-/* =========================================================
-   GLOBAL
-   ========================================================= */
-
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
@@ -86,11 +82,6 @@ button {
   font-family: inherit;
 }
 
-
-/* =========================================================
-   THREE.JS / WEBGL
-   ========================================================= */
-
 #webgl-container {
   position: fixed;
   inset: 0;
@@ -107,11 +98,6 @@ button {
   height: 100% !important;
 }
 
-
-/* =========================================================
-   PLANET LABEL OVERLAY
-   ========================================================= */
-
 #planet-labels-overlay {
   position: fixed;
   inset: 0;
@@ -127,37 +113,26 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-
   padding: 6px 14px;
-
   border-radius: 9999px;
   border: 1px solid rgba(56, 189, 248, 0.55);
-
   font-size: 11px;
   font-weight: 700;
   font-family: 'Fira Code', monospace;
-
   white-space: nowrap;
-
   background: rgba(2, 12, 38, 0.75);
-
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-
   box-shadow: 0 0 20px rgba(1, 32, 37, 0.3);
-
   transform: translate(-50%, -240%);
-
   pointer-events: auto;
   cursor: pointer;
-
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.2s ease;
-
   will-change: transform, opacity;
 }
 
@@ -165,10 +140,8 @@ button {
   background: rgba(6, 182, 212, 0.45);
   border-color: #ffffff;
   color: #ffffff;
-
   box-shadow:
     0 0 30px rgba(56, 189, 248, 0.9);
-
   transform: translate(-50%, -260%) scale(1.08);
 }
 
@@ -176,48 +149,29 @@ button {
   background: rgba(168, 85, 247, 0.75) !important;
   border-color: #a855f7 !important;
   color: #ffffff !important;
-
   box-shadow:
     0 0 35px rgba(168, 85, 247, 0.95) !important;
 }
 
-
-/* =========================================================
-   GLASS PANEL
-   ========================================================= */
-
 .glass-panel {
   background: rgb(2 12 38 / 94%);
-
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-
   border: 2px solid rgba(185, 211, 223, 0.25);
-
   box-shadow:
     0 20px 50px -10px rgba(0, 0, 0, 0.9);
 }
-
-
-/* =========================================================
-   GLASS CARD
-   ========================================================= */
 
 .glass-card {
   --mx: 50%;
   --my: 50%;
   --light-color: rgba(56, 189, 248, 1);
-
   position: relative;
   isolation: isolate;
-
   overflow: hidden;
-
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-
   border: 2px solid rgba(146, 163, 170, 0.2);
-
   transition:
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.3s ease,
@@ -226,14 +180,10 @@ button {
 
 .glass-card::before {
   content: "";
-
   position: absolute;
   inset: -2px;
-
   padding: 2px;
-
   border-radius: inherit;
-
   background:
     radial-gradient(
       90px 90px at var(--mx) var(--my),
@@ -243,79 +193,52 @@ button {
       transparent 65%
     );
 
-  /*
-    Keep only the border portion visible.
-  */
-  -webkit-mask:    linear-gradient(#000 0 0) content-box,
+  -webkit-mask: linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
-
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-
   opacity: 0;
-
   pointer-events: none;
-
   transition: opacity 0.2s ease;
 }
 
 .glass-card::after {
   content: "";
-
   position: absolute;
-
   width: 180px;
   height: 180px;
-
   left: var(--mx);
   top: var(--my);
-
   transform: translate(-50%, -50%);
-
   border-radius: 50%;
-
   background:
     radial-gradient(
       circle,
       rgba(56, 189, 248, 0.10),
       transparent 70%
     );
-
   pointer-events: none;
-
   opacity: 0;
-
   transition: opacity 0.2s ease;
 }
 
 .glass-card:hover {
   border-color: rgba(55, 146, 185, 0.55);
-
   transform: translateY(-2px);
-
   box-shadow:
     0 12px 30px -5px rgba(6, 182, 212, 0.3),
     0 0 35px rgba(56, 189, 248, 0.08);
 }
-
 .glass-card:hover::before,
 .glass-card:hover::after {
   opacity: 1;
 }
 
-
-/* =========================================================
-   INFO DRAWER
-   ========================================================= */
-
 #info-drawer {
   max-width: 100vw;
-
   overflow-x: hidden;
   overflow-y: auto;
-
   -webkit-overflow-scrolling: touch;
-
   scrollbar-width: thin;
   scrollbar-color: #0284c7 rgba(15, 23, 42, 0.5);
 }
@@ -339,11 +262,6 @@ button {
   overflow-wrap: anywhere;
 }
 
-
-/* =========================================================
-   PROJECT MODAL
-   ========================================================= */
-
 #project-modal {
   -webkit-overflow-scrolling: touch;
 }
@@ -353,10 +271,8 @@ button {
   max-width: 800px;
   max-height: 85vh;
   max-height: 85dvh;
-
   overflow-x: hidden;
   overflow-y: auto;
-
   -webkit-overflow-scrolling: touch;
 }
 
@@ -366,27 +282,14 @@ button {
   overflow-wrap: anywhere;
 }
 
-
-/* =========================================================
-   TERMINAL
-   ========================================================= */
-
 .terminal-box {
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
-
   background: rgba(2, 4, 10, 0.96);
-
   font-family: 'Fira Code', monospace;
-
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
-
-
-/* =========================================================
-   EARTH — GLASS SHAKE
-   ========================================================= */
 
 .glass-shake {
   transition:
@@ -394,84 +297,56 @@ button {
     background 0.25s ease,
     border-color 0.25s ease,
     box-shadow 0.25s ease;
-
   transform: translate3d(0, 0, 0);
-
   will-change: transform;
 }
 
 .glass-shake:hover {
   animation: glassShake 0.45s ease-in-out;
-
   background: rgba(255, 255, 255, 0.055);
-
   border-color: rgba(255, 255, 255, 0.22);
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.22),
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 @keyframes glassShake {
-
   0% {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
-
   20% {
     transform: translate3d(-2px, 1px, 0) rotate(-0.4deg);
   }
-
   40% {
     transform: translate3d(2px, -1px, 0) rotate(0.4deg);
   }
-
   60% {
     transform: translate3d(-1px, 1px, 0) rotate(-0.25deg);
   }
-
   80% {
     transform: translate3d(1px, 0, 0) rotate(0.2deg);
   }
-
   100% {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
 }
 
-
-/* =========================================================
-   EARTH SKILLS
-   ========================================================= */
-
 .earth-skill-track {
   height: 6px;
   width: 100%;
-
   overflow: hidden;
-
   border-radius: 999px;
-
   background: rgba(30, 41, 59, 0.9);
 }
 
 .earth-skill-fill {
   height: 100%;
   width: 0;
-
   border-radius: 999px;
-
   transition:
     width 1.4s cubic-bezier(0.1, 0.9, 0.2, 1);
-
   box-shadow:
     0 0 10px rgba(56, 189, 248, 0.25);
 }
-
-
-/* =========================================================
-   EARTH TOOL CARD
-   ========================================================= */
 
 .earth-tool-card {
   transition:
@@ -483,30 +358,19 @@ button {
 
 .earth-tool-card:hover {
   background: rgba(255, 255, 255, 0.055);
-
   border-color: rgba(56, 189, 248, 0.28);
-
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-
-/* =========================================================
-   PHONE
-   280px → 639px
-   ========================================================= */
-
 @media (max-width: 639px) {
-
   html,
   body {
     width: 100%;
     height: 100%;
     height: 100dvh;
   }
-
-  /* Header */
 
   header {
     padding-top: env(safe-area-inset-top);
@@ -520,9 +384,7 @@ button {
 
   header .glass-panel {
     min-height: 52px;
-
     padding: 7px 9px;
-
     border-width: 1px;
     border-radius: 14px;
   }
@@ -534,33 +396,24 @@ button {
 
   header .glass-panel > a span {
     max-width: 140px;
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
     font-size: 12px;
   }
 
   header .glass-panel > a > div {
     width: 32px !important;
     height: 32px !important;
-
     flex-shrink: 0;
   }
-
-  /* Orbit button */
 
   #reset-orbit-btn {
     min-width: 40px;
     min-height: 40px;
-
     padding: 8px 10px;
-
     justify-content: center;
   }
-
-  /* Mobile menu */
 
   #mobile-menu {
     padding-left: 10px !important;
@@ -569,35 +422,24 @@ button {
 
   #mobile-menu .glass-panel {
     padding: 8px;
-
     border-radius: 16px;
-
     max-height: calc(100dvh - 78px);
-
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   #mobile-menu button {
     min-height: 54px;
-
     padding: 7px 5px;
-
     line-height: 1.25;
     font-size: 9px;
-
     border-radius: 11px;
   }
 
-  /* Planet labels */
-
   .planet-badge {
     padding: 4px 9px;
-
     font-size: 9px;
-
     border-width: 1px;
-
     transform: translate(-50%, -190%);
   }
 
@@ -605,23 +447,16 @@ button {
     transform: translate(-50%, -200%) scale(1.04);
   }
 
-  /* Drawer */
-
   #info-drawer {
     width: 100vw !important;
     max-width: 100vw;
-
     height: 100dvh;
-
     padding-top:
       max(58px, calc(env(safe-area-inset-top) + 50px));
-
     padding-left: 16px;
     padding-right: 16px;
-
     padding-bottom:
       max(24px, calc(env(safe-area-inset-bottom) + 20px));
-
     border-radius: 0;
     border-left: 0;
     border-right: 0;
@@ -630,41 +465,28 @@ button {
   #close-drawer-btn {
     top: max(12px, env(safe-area-inset-top));
     right: 12px;
-
     width: 42px;
     height: 42px;
-
     z-index: 20;
   }
 
-  /* Modal */
-
   #project-modal {
     padding: 10px;
-
     align-items: flex-end;
   }
 
   #project-modal > div {
     width: 100%;
     max-width: 100%;
-
     max-height: 90dvh;
-
     padding: 18px;
-
     padding-top: 50px;
-
     border-radius: 22px;
   }
-
-  /* Cards */
 
   .glass-card {
     border-width: 1px;
   }
-
-  /* Touch */
 
   button,
   .planet-badge {
@@ -672,29 +494,19 @@ button {
   }
 }
 
-
-/* =========================================================
-   SMALL PHONES
-   <= 380px
-   ========================================================= */
-
 @media (max-width: 380px) {
-
   header > div {
     padding-left: 7px !important;
     padding-right: 7px !important;
   }
-
   header .glass-panel {
     padding: 6px 7px;
     border-radius: 12px;
   }
-
   header .glass-panel > a span {
     font-size: 10px;
     max-width: 105px;
   }
-
   header .glass-panel > a > div {
     width: 29px !important;
     height: 29px !important;
@@ -736,14 +548,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   TABLET
-   640px → 1023px
-   ========================================================= */
-
 @media (min-width: 640px) and (max-width: 1023px) {
-
   header > div {
     padding-left: 18px !important;
     padding-right: 18px !important;
@@ -754,8 +559,6 @@ button {
     border-radius: 18px;
   }
 
-  /* Tablet mobile menu */
-
   #mobile-menu {
     padding-left: 18px !important;
     padding-right: 18px !important;
@@ -763,37 +566,25 @@ button {
 
   #mobile-menu .glass-panel {
     padding: 12px;
-
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
-
     gap: 8px;
-
     max-height: calc(100dvh - 90px);
-
     overflow-y: auto;
   }
 
   #mobile-menu button {
     min-height: 58px;
-
     padding: 9px 6px;
-
     font-size: 10px;
     line-height: 1.3;
   }
 
-  /* Drawer */
-
   #info-drawer {
     width: min(620px, 85vw) !important;
-
     height: 100dvh;
-
     padding: 32px;
   }
-
-  /* Modal */
 
   #project-modal {
     padding: 24px;
@@ -804,22 +595,13 @@ button {
     max-height: 88dvh;
   }
 
-  /* Labels */
-
   .planet-badge {
     font-size: 10px;
     padding: 5px 11px;
   }
 }
 
-
-/* =========================================================
-   LAPTOP
-   1024px → 1279px
-   ========================================================= */
-
 @media (min-width: 1024px) and (max-width: 1279px) {
-
   header > div {
     padding-left: 20px !important;
     padding-right: 20px !important;
@@ -831,11 +613,8 @@ button {
 
   header nav {
     max-width: 68vw;
-
     overflow-x: auto;
-
     scrollbar-width: none;
-
     white-space: nowrap;
   }
 
@@ -845,16 +624,13 @@ button {
 
   header nav button {
     flex-shrink: 0;
-
     padding-left: 7px;
     padding-right: 7px;
-
     font-size: 9px;
   }
 
   #info-drawer {
     width: min(600px, 60vw) !important;
-
     padding: 30px;
   }
 
@@ -863,14 +639,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   DESKTOP
-   1280px → 1535px
-   ========================================================= */
-
 @media (min-width: 1280px) and (max-width: 1535px) {
-
   header > div {
     padding-left: 28px !important;
     padding-right: 28px !important;
@@ -885,17 +654,9 @@ button {
   }
 }
 
-
-/* =========================================================
-   LARGE DESKTOP
-   1536px+
-   ========================================================= */
-
 @media (min-width: 1536px) {
-
   header > div {
     max-width: 1800px;
-
     padding-left: 32px !important;
     padding-right: 32px !important;
   }
@@ -916,7 +677,6 @@ button {
 
   #info-drawer {
     width: min(700px, 42vw) !important;
-
     padding: 40px;
   }
 
@@ -925,26 +685,16 @@ button {
   }
 }
 
-
-/* =========================================================
-   2K / 4K / ULTRA WIDE
-   2000px+
-   ========================================================= */
-
 @media (min-width: 2000px) {
-
   html {
     font-size: 18px;
   }
-
   header > div {
     max-width: 1900px;
   }
-
   header .glass-panel {
     min-height: 68px;
   }
-
   header nav button {
     font-size: 12px;
   }
@@ -954,13 +704,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   LANDSCAPE PHONE
-   ========================================================= */
-
 @media (max-width: 896px) and (orientation: landscape) {
-
   header > div {
     padding-top: 4px !important;
   }
@@ -988,13 +732,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   SHORT SCREENS
-   ========================================================= */
-
 @media (max-height: 650px) {
-
   header > div {
     padding-top: 4px !important;
   }
@@ -1012,13 +750,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   TOUCH DEVICES
-   ========================================================= */
-
 @media (hover: none) and (pointer: coarse) {
-
   .glass-card:hover,
   .earth-tool-card:hover,
   .glass-shake:hover,
@@ -1039,13 +771,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   SAFE AREA — NOTCH / DYNAMIC ISLAND
-   ========================================================= */
-
 @supports (padding: env(safe-area-inset-top)) {
-
   header > div {
     padding-top: max(
       7px,
@@ -1068,13 +794,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -1101,13 +821,7 @@ button {
   }
 }
 
-
-/* =========================================================
-   PRINT
-   ========================================================= */
-
 @media print {
-
   body {
     overflow: visible;
     background: white;
@@ -1168,7 +882,7 @@ button {
             <span class="hidden sm:inline">Orbit View</span>
           </button>
           
-          <button id="mobile-menu-btn" aria-label="Toggle Menu" class="lg:hidden text-slate-200 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
+          <button id="mobile-menu-btn" aria-label="Toggle Menu" class="lg:hidden text-slate-200 hover:text-white p-2 rounded-xl hover: transition-colors">
             <i class="fa-solid fa-bars text-lg"></i>
           </button>
         </div>
@@ -1178,29 +892,29 @@ button {
     <div id="mobile-menu" class="hidden lg:hidden px-3 sm:px-6 pt-1 pb-4 pointer-events-auto">
       <div class="glass-panel rounded-2xl p-3 grid grid-cols-2 xs:grid-cols-3 gap-2 text-center text-xs font-mono font-bold text-slate-100">      
         <!-- Sun -->
-        <button onclick="selectCelestialBody('sun'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-amber-400"> ☀️ Sun (Profile & Bio) </button>      
+        <button onclick="selectCelestialBody('sun'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-amber-400"> ☀️ Sun (Profile & Bio) </button>      
          <!-- Earth -->
-        <button onclick="selectCelestialBody('earth'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-blue-300"> 🌍 Earth (Tech Stack Matrix) </button>      
+        <button onclick="selectCelestialBody('earth'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-blue-300"> 🌍 Earth (Tech Stack Matrix) </button>      
         <!-- Moon -->
-        <button onclick="selectCelestialBody('moon'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200"> 🌙 Moon (Employment History) </button>      
+        <button onclick="selectCelestialBody('moon'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-slate-200"> 🌙 Moon (Employment History) </button>      
         <!-- Mars -->
-        <button onclick="selectCelestialBody('mars'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-red-300"> ♂ Mars (Production Systems) </button>      
+        <button onclick="selectCelestialBody('mars'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-red-300"> ♂ Mars (Production Systems) </button>      
         <!-- Jupiter -->
-        <button onclick="selectCelestialBody('jupiter'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-purple-300"> ♃ Jupiter (Applications Utility) </button>      
+        <button onclick="selectCelestialBody('jupiter'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-purple-300"> ♃ Jupiter (Applications Utility) </button>      
         <!-- Venus -->
-        <button onclick="selectCelestialBody('venus'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-amber-300"> ♀ Venus (Academic & Reference) </button>      
+        <button onclick="selectCelestialBody('venus'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-amber-300"> ♀ Venus (Academic & Reference) </button>      
        <!-- Mercury -->
-        <button onclick="selectCelestialBody('mercury'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200"> ☿ Mercury (About) </button>      
+        <button onclick="selectCelestialBody('mercury'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-slate-200"> ☿ Mercury (About) </button>      
         <!-- Saturn -->
-        <button onclick="selectCelestialBody('saturn'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-yellow-300"> ♄ Saturn (Contact Me) </button>   
+        <button onclick="selectCelestialBody('saturn'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-yellow-300"> ♄ Saturn (Contact Me) </button>   
         <!-- Neptune -->
-        <button onclick="selectCelestialBody('neptune'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-yellow-300">  ♆ CV </button>   
+        <button onclick="selectCelestialBody('neptune'); toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900/90 hover: text-yellow-300">  ♆ CV </button>   
       </div>
     </div>
   </header>
 
   <aside id="info-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[500px] md:w-[600px] lg:w-[650px] glass-panel z-40 transform translate-x-full transition-transform duration-500 ease-out p-6 sm:p-8 overflow-y-auto pointer-events-auto">
-    <button id="close-drawer-btn" aria-label="Close details" class="absolute top-5 right-5 w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center transition-colors shadow-lg">
+    <button id="close-drawer-btn" aria-label="Close details" class="absolute top-5 right-5 w-10 h-10 rounded-xl  hover:bg-slate-700 text-white flex items-center justify-center transition-colors shadow-lg">
       <i class="fa-solid fa-xmark text-lg"></i>
     </button>
     <div id="drawer-content" class="pt-2"></div>
@@ -1211,39 +925,19 @@ button {
   class="fixed inset-0 z-[9999] hidden items-center justify-center p-4 bg-black/80"
 >
   <div
-    class="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto
-           rounded-3xl
-           border border-white/15
-           p-6 sm:p-8
-           pointer-events-auto"
-  >
-
+    class="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-white/15 p-6 sm:p-8 pointer-events-auto"  >
     <!-- Close -->
-    <button
-      onclick="closeProjectModal()"
-      aria-label="Close modal"
-      class="absolute top-4 right-4 z-20
-             w-9 h-9 rounded-xl
-             bg-white/10
-             border border-white/10
-             hover:bg-white/20
-             text-white
-             flex items-center justify-center
-             transition-all duration-300
-             hover:scale-110"
-    >
+    <button onclick="closeProjectModal()" aria-label="Close modal" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110" >
       <i class="fa-solid fa-xmark"></i>
     </button>
-
     <!-- Modal Content -->
     <div id="modal-content"></div>
-
   </div>
 </div>
 
-  <script>
-    const portfolioPages = {  
-sun: {
+<script>
+  const portfolioPages = {  
+    sun: {
   badge: "☀️ Core / Profile & Bio",
   title: "Shobo Mozumder",
   subtitle: "Software Engineer (.NET)",
@@ -1253,7 +947,6 @@ sun: {
     <div class="h-full w-full flex items-start justify-center overflow-y-auto p-4 sm:p-8">
 
       <div class="w-full max-w-4xl">
-
         <!-- Chapter Header -->
         <div class="flex items-center justify-between mb-6">
           <div>
@@ -1262,80 +955,32 @@ sun: {
             </p>
             <div class="h-px w-20 bg-gradient-to-r from-amber-400 to-transparent mt-2"></div>
           </div>
-
           <span class="text-[10px] sm:text-xs uppercase tracking-[0.25em] text-slate-400 font-mono">
             Chapter I
           </span>
         </div>
 
         <!-- Main Profile Card -->
-        <div class="
-          relative overflow-hidden rounded-3xl
-          bg-slate-950/80
-          border border-slate-700/70
-          shadow-2xl
-        ">
-
+        <div class=" relative overflow-hidden rounded-3xl bg-slate-950/80 border border-slate-700/70 shadow-2xl">
           <!-- Decorative glow -->
-          <div class="
-            absolute -top-32 -right-32
-            w-72 h-72
-            bg-amber-400/10
-            rounded-full
-            blur-3xl
-            pointer-events-none
-          "></div>
-
-          <div class="
-            absolute -bottom-32 -left-32
-            w-72 h-72
-            bg-indigo-500/10
-            rounded-full
-            blur-3xl
-            pointer-events-none
-          "></div>
-
+          <div class="absolute -top-32 -right-32 w-72 h-72 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-32 -left-32 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
           <div class="relative p-5 sm:p-8 lg:p-10">
-
             <!-- Profile Header -->
-            <div class="
-              flex flex-col
-              sm:flex-row
-              items-center sm:items-start
-              gap-6
-              pb-7
-              border-b border-slate-700/60
-            ">
-
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-7 border-b border-slate-700/60">
               <!-- Profile Image -->
               <div class="flex-shrink-0">
-                <div class="
-                  w-28 h-28
-                  sm:w-36 sm:h-36
-                  rounded-2xl
-                  overflow-hidden
-                  border-2 border-amber-400/40
-                  bg-slate-900
-                  shadow-xl
-                  shadow-amber-500/10
-                  relative
-                ">
+                <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-amber-400/40 bg-slate-900 shadow-xl shadow-amber-500/10 relative">
                   <img
                     src="SMS2.jpg"
                     alt="Shobo Mozumder"
                     class="w-full h-full object-cover"
                     onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')"
                   >
-
-                  <div class="
-                    hidden absolute inset-0
-                    items-center justify-center
-                    flex-col
-                    bg-slate-900
-                  ">
+                  <div class="hidden absolute inset-0 items-center justify-center flex-col bg-slate-900">
                     <i class="fa fa-user-tie text-3xl text-amber-400"></i>
                     <span class="text-[9px] text-slate-400 uppercase tracking-widest mt-2">
-                      DIU '21
+                      DIU '22
                     </span>
                   </div>
                 </div>
@@ -1343,98 +988,47 @@ sun: {
 
               <!-- Identity -->
               <div class="flex-1 text-center sm:text-left pt-1">
-
                 <div class="flex flex-wrap justify-center sm:justify-start items-center gap-2 mb-2">
                   <span class="
-                    inline-flex items-center gap-2
-                    px-2.5 py-1
-                    rounded-full
-                    bg-amber-400/10
-                    border border-amber-400/20
-                    text-amber-300
-                    text-[9px]
-                    font-bold
-                    uppercase
-                    tracking-widest
-                  ">
+                    inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-[9px] font-bold uppercase tracking-widest">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                     Core Profile
                   </span>
                 </div>
-
-                <h2 class="
-                  text-2xl sm:text-4xl
-                  font-black
-                  tracking-tight
-                  text-white
-                  leading-tight
-                ">
+                <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
                   Shobo <span class="text-amber-400">Mozumder</span>
                 </h2>
-
-                <p class="
-                  mt-2
-                  text-xs sm:text-sm
-                  font-bold
-                  uppercase
-                  tracking-[0.18em]
-                  text-indigo-300
-                ">
+                <p class="mt-2 text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-indigo-300">
                   Software Engineer (.NET)
                 </p>
-
                 <!-- Contact -->
-                <div class="
-                  mt-5
-                  grid
-                  grid-cols-1
-                  sm:grid-cols-2
-                  gap-x-6
-                  gap-y-2
-                  text-[10px] sm:text-xs
-                  text-slate-300
-                  font-mono
-                ">
-
+                <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[10px] sm:text-xs text-slate-300 font-mono">
                   <div class="flex items-center justify-center sm:justify-start gap-2">
                     <i class="fa fa-envelope text-amber-400 w-4"></i>
                     <span>shuvomozumder101@gmail.com</span>
                   </div>
-
                   <div class="flex items-center justify-center sm:justify-start gap-2 sm:col-span-2">
                     <i class="fa fa-phone text-amber-400 w-4"></i>
                     <span>+8801640703380</span>
                   </div>
-
                   <div class="flex items-center justify-center sm:justify-start gap-2 sm:col-span-2">
                     <i class="fa fa-phone text-amber-400 w-4"></i>
                     <span>+8801532441002</span>
                   </div>
-
                   <div class="flex items-center justify-center sm:justify-start gap-2 sm:col-span-2">
                     <i class="fa fa-map-pin text-amber-400 w-4"></i>
                     <span>Khilkhet, Dhaka, Bangladesh</span>
                   </div>
-
                 </div>
-
               </div>
             </div>
 
             <!-- Biography -->
             <div class="pt-7">
-
               <div class="flex items-center gap-3 mb-4">
-                <div class="
-                  w-8 h-8
-                  rounded-lg
-                  bg-indigo-500/10
-                  border border-indigo-400/20
-                  flex items-center justify-center
-                ">
+                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-400/20 flex items-center justify-center">
                   <i class="fa fa-user text-indigo-300 text-xs"></i>
                 </div>
-
                 <div>
                   <p class="text-xs font-bold uppercase tracking-widest text-white">
                     About Me
@@ -1445,13 +1039,7 @@ sun: {
                 </div>
               </div>
 
-              <p class="
-                text-sm sm:text-base
-                leading-7
-                text-slate-300
-                font-sans
-                text-justify
-              ">
+              <p class="text-sm sm:text-base leading-7 text-slate-300 font-sans text-justify">
                 I am a passionate and results-driven software developer
                 specializing in web application development using ASP.NET Core
                 and modern technologies. Skilled in designing scalable
@@ -1464,116 +1052,48 @@ sun: {
                 distributed systems, contributing to innovative and
                 high-impact projects.
               </p>
-
             </div>
 
             <!-- Career Ambition -->
-            <div class="
-              mt-7
-              rounded-2xl
-              border border-amber-400/20
-              bg-gradient-to-r
-              from-amber-400/10
-              via-slate-900/30
-              to-indigo-500/10
-              p-5
-            ">
-
+            <div class="mt-7 rounded-2xl border border-amber-400/20 bg-gradient-to-r from-amber-400/10 via-slate-900/30 to-indigo-500/10 p-5">
               <div class="flex items-start gap-4">
-
-                <div class="
-                  flex-shrink-0
-                  w-10 h-10
-                  rounded-xl
-                  bg-amber-400/10
-                  border border-amber-400/20
-                  flex items-center justify-center
-                ">
-                  <i class="fa fa-compass text-amber-400"></i>
+                <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center"> 
+                <i class="fa fa-compass text-amber-400"></i>
                 </div>
 
                 <div>
-                  <p class="
-                    text-[10px]
-                    uppercase
-                    tracking-[0.2em]
-                    font-bold
-                    text-amber-300
-                    mb-1.5
-                  ">
+                  <p class="text-[10px] uppercase tracking-[0.2em] font-bold text-amber-300 mb-1.5 ">
                     Career Ambition
                   </p>
-
-                  <p class="
-                    text-sm
-                    sm:text-base
-                    leading-relaxed
-                    text-slate-200
-                  ">
+                  <p class="text-sm sm:text-base leading-relaxed text-slate-200">
                     To grow into a Software Architect specializing in highly
                     resilient microservices and high-throughput distributed
                     systems.
                   </p>
                 </div>
-
               </div>
-
             </div>
 
-<!-- =================================
-                 NEXT PLANET BUTTON
-                 ================================= -->
-
+                
             <div class="mt-7">
-
               <button
                 onclick="selectCelestialBody('earth')"
-                class="
-                  w-full
-                  py-3.5
-                  px-4
-                  rounded-xl
-                  
-                  hover:bg-slate-800/80
-                  text-slate-200
-                  font-bold
-                  text-[10px] sm:text-xs
-                  uppercase
-                  tracking-wider
-                  border border-slate-700
-                  hover:border-red-400/30
-                  transition-all
-                  duration-300
-                  flex
-                  items-center
-                  justify-center
-                  gap-3
-                "
-              >
-
+                class="w-full py-3.5 px-4 rounded-xl hover:/80 text-slate-200 font-bold text-[10px] sm:text-xs uppercase tracking-wider 
+                border border-slate-700 hover:border-red-400/30 transition-all duration-300 flex items-center justify-center gap-3">
                 <span>
                   Next Planet: Earth (Tech Stack Matrix)
                 </span>
-
-                <i class="
-                  fa-solid
-                  fa-arrow-right
-                  text-red-400
-                "></i>
-
+                <i class="fa-solid fa-arrow-right text-red-400"></i>
               </button>
-
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   `
 },
 
-mercury: {
+    mercury: {
   badge: "☿ Planet 1 • About Me",
   title: "About, Contact",
   subtitle: "Software Engineer • Career Vision • Professional Contact",
@@ -1628,7 +1148,7 @@ mercury: {
         <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
 
           <!-- Profile Image -->
-          <div class="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-cyan-400/40 shadow-lg bg-slate-800 flex items-center justify-center">
+          <div class="w-24 h-24 shrink-0 rounded-full overflow-hidden border-2 border-cyan-400/40 shadow-lg  flex items-center justify-center">
             <img
               src="SMS.jpg"
               alt="Shobo Mozumder"
@@ -1782,7 +1302,7 @@ mercury: {
             rel="noopener noreferrer"
             class="glass-card p-4 rounded-xl flex items-center gap-3 group hover:border-slate-500/50 transition-all"
           >
-            <span class="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
+            <span class="w-9 h-9 rounded-lg border border-slate-700 flex items-center justify-center shrink-0">
               <i class="fab fa-github text-slate-200"></i>
             </span>
 
@@ -1846,7 +1366,7 @@ mercury: {
       <!-- Next Planet -->
       <button
         onclick="selectCelestialBody('saturn')"
-        class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors flex items-center justify-center gap-2"
+        class="w-full py-3 rounded-xl text-cyan-300 font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors flex items-center justify-center gap-2"
       >
         <span>Next Planet: Saturn (Contact Me)</span>
         <i class="fa-solid fa-arrow-right"></i>
@@ -1856,7 +1376,7 @@ mercury: {
   `
 },
 
-saturn: {
+    saturn: {
   badge: "♄ Planet 6 • Contact",
   title: "Get In Touch",
   subtitle: "Let's Build Something Amazing Together",
@@ -2134,7 +1654,7 @@ saturn: {
       <!-- Next Planet -->
       <button
         onclick="selectCelestialBody('neptune')"
-        class="mt-5 w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-yellow-300 font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors flex items-center justify-center gap-2"
+        class="mt-5 w-full py-3 rounded-xl text-yellow-300 font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors flex items-center justify-center gap-2"
       >
         <span>Next Planet:  Neptune (CV)</span>
         <i class="fa-solid fa-arrow-right"></i>
@@ -2143,8 +1663,8 @@ saturn: {
     </div>
   `
 },
-      
-venus: {
+
+    venus: {
   badge: "♀ Planet 2 • Education & References",
   title: "Academic Background & References",
   subtitle: "Academic Qualifications & Professional Endorsements",
@@ -2350,11 +1870,11 @@ render: () => `
             </div>
 
             <div class="flex flex-wrap gap-1.5 mt-3">
-              <span class="px-2 py-1 rounded-md bg-slate-800 border border-slate-700 text-[9px] text-slate-300 font-mono">
+              <span class="px-2 py-1 rounded-md  border border-slate-700 text-[9px] text-slate-300 font-mono">
                 📞 +8801711831082
               </span>
 
-              <span class="px-2 py-1 rounded-md bg-slate-800 border border-slate-700 text-[9px] text-slate-300 font-mono">
+              <span class="px-2 py-1 rounded-md  border border-slate-700 text-[9px] text-slate-300 font-mono">
                 ✉ ratishsen@yahoo.com
               </span>
             </div>
@@ -2390,7 +1910,7 @@ render: () => `
             </div>
 
             <div class="flex flex-wrap gap-1.5 mt-3">
-              <span class="px-2 py-1 rounded-md bg-slate-800 border border-slate-700 text-[9px] text-slate-300 font-mono">
+              <span class="px-2 py-1 rounded-md  border border-slate-700 text-[9px] text-slate-300 font-mono">
                 ✉ nusrat.swe@diu.edu.bd
               </span>
             </div>
@@ -2426,11 +1946,11 @@ render: () => `
             </div>
 
             <div class="flex flex-wrap gap-1.5 mt-3">
-              <span class="px-2 py-1 rounded-md bg-slate-800 border border-slate-700 text-[9px] text-slate-300 font-mono">
+              <span class="px-2 py-1 rounded-md  border border-slate-700 text-[9px] text-slate-300 font-mono">
                 📞 +8801829848975
               </span>
 
-              <span class="px-2 py-1 rounded-md bg-slate-800 border border-slate-700 text-[9px] text-slate-300 font-mono">
+              <span class="px-2 py-1 rounded-md  border border-slate-700 text-[9px] text-slate-300 font-mono">
                 ✉ shafikul.singularity@gmail.com
               </span>
             </div>
@@ -2466,11 +1986,11 @@ render: () => `
             </div>
 
             <div class="flex flex-wrap gap-1.5 mt-3">
-              <span class="px-2 py-1 rounded-md bg-slate-800 border border-slate-700 text-[9px] text-slate-300 font-mono">
+              <span class="px-2 py-1 rounded-md  border border-slate-700 text-[9px] text-slate-300 font-mono">
                 📞 +8801712-969099
               </span>
 
-              <span class="px-2 py-1 rounded-md bg-slate-800 border border-slate-700 text-[9px] text-slate-300 font-mono">
+              <span class="px-2 py-1 rounded-md  border border-slate-700 text-[9px] text-slate-300 font-mono">
                 ✉ mahabub@singularitybd.com
               </span>
             </div>
@@ -2491,7 +2011,7 @@ render: () => `
                   px-4
                   rounded-xl
                   
-                  hover:bg-slate-800/80
+                  hover:/80
                   text-red-300
                   font-bold
                   text-[10px] sm:text-xs
@@ -2522,8 +2042,8 @@ render: () => `
     </div>
   `
 },
-      
-earth: {
+
+    earth: {
   badge: "🌍 Planet 3 • Capabilities",
   title: "Technical Skillset Matrix",
   subtitle: "Core Programming, Frameworks & Enterprise Tools",
@@ -3345,7 +2865,7 @@ earth: {
                   px-4
                   rounded-xl
                   
-                  hover:bg-slate-800/80
+                  hover:/80
                   text-slate-200
                   font-bold
                   text-[10px] sm:text-xs
@@ -3382,8 +2902,8 @@ earth: {
     </div>
   `
 },
-      
-moon: {
+
+    moon: {
   badge: "🌙 Earth Satellite • Employment",
   title: "Work Experience & Progression",
   subtitle: "4+ Years Professional Experience",
@@ -3852,7 +3372,7 @@ moon: {
                       px-2.5
                       py-1
                       rounded-full
-                      bg-slate-800
+                      
                       border border-slate-700
                       text-slate-300
                       text-[9px]
@@ -3950,7 +3470,7 @@ moon: {
                   px-4
                   rounded-xl
                   
-                  hover:bg-slate-800/80
+                  hover:/80
                   text-slate-200
                   font-bold
                   text-[10px] sm:text-xs
@@ -3989,8 +3509,8 @@ moon: {
     </div>
   `
 },
-      
-mars: {
+
+    mars: {
   badge: "♂ Planet 4 • Production Systems",
   title: "Enterprise & Personal Projects",
   subtitle: "3 Professional Enterprise + Personal Solutions",
@@ -4639,7 +4159,7 @@ mars: {
                   px-4
                   rounded-xl
                   
-                  hover:bg-slate-800/80
+                  hover:/80
                   text-red-300
                   font-bold
                   text-[10px] sm:text-xs
@@ -4673,36 +4193,18 @@ mars: {
     </div>
   `
 },
-      
-jupiter: {
-  badge: "♃ Planet 5 • Custom Applications",
-  title: "Custom Applications Utility",
-  subtitle: "Personal & Utility Web Applications",
-  color: "text-purple-400",
 
-  render: () => `
-    <div class="
-      h-full w-full
-      flex items-start justify-center
-      overflow-y-auto
-      p-4 sm:p-8
-    ">
+    jupiter: {
+      badge: "♃ Planet 5 • Custom Applications",
+      title: "Custom Applications Utility",
+      subtitle: "Personal & Utility Web Applications",
+      color: "text-purple-400",
 
-      <div class="w-full max-w-5xl">
-
-        <!-- =====================================
-             CHAPTER HEADER
-             ===================================== -->
-
-        <div class="flex items-center justify-between mb-6">
-
-          <div>
-            <p class="
-              text-red-300
-              font-serif italic
-              text-sm sm:text-base
-              font-semibold
-            ">
+      render: () => `
+        <div class="h-full w-full flex items-start justify-center overflow-y-auto p-4 sm:p-8">
+          <div class="w-full max-w-5xl">
+            <div class="flex items-center justify-between mb-6"><div>
+            <p class="text-red-300 font-serif italic text-sm sm:text-base font-semibold">
               Applications Utility
             </p>
 
@@ -4727,31 +4229,21 @@ jupiter: {
 
         </div>
 
-      <!-- Applications -->
       <div class="space-y-4">
-
         <h3 class="text-xs font-bold text-purple-400 uppercase tracking-wider">
           3 Featured Applications
         </h3>
-
-
         <!-- Job Portal -->
         <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
-
           <div>
-
             <div class="flex justify-between items-center mb-2">
-
               <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 text-[10px] font-bold">
                 1. Recruitment
               </span>
-
               <span class="text-[10px] font-mono text-slate-300">
                 WEB APP
               </span>
-
             </div>
-
             <h4 class="text-base font-bold text-white">
               Online Job Portal
             </h4>
@@ -4769,31 +4261,10 @@ jupiter: {
               <span class="tech-chip">REST API</span>
               <span class="tech-chip">JavaScript</span>
             </div>
-
           </div>
-<button
-                      onclick="openProjectModal('job_Portal')"
-                      class="
-                        mt-4
-                        text-[10px]
-                        text-cyan-300
-                        font-bold
-                        uppercase
-                        tracking-wider
-                        flex
-                        items-center
-                        gap-2
-                        hover:text-cyan-200
-                        transition-colors
-                      "
-                    >
-                      View Details
-                      <i class="
-                        fa-solid
-                        fa-chevron-right
-                        text-[8px]
-                      "></i>
-                    </button>
+          <button onclick="openProjectModal('job_Portal')" class="mt-4 text-[10px] text-cyan-300 font-bold uppercase tracking-wider flex items-center gap-2 hover:text-cyan-200 transition-colors">
+            View Details<i class="fa-solid fa-chevron-right text-[8px]"></i>
+          </button>
           
         </div>
 
@@ -4938,7 +4409,7 @@ jupiter: {
                   px-4
                   rounded-xl
                   
-                  hover:bg-slate-800/80
+                  hover:/80
                   text-red-300
                   font-bold
                   text-[10px] sm:text-xs
@@ -4970,165 +4441,63 @@ jupiter: {
   `
 },
 
-neptune: {
-  badge: "♆ Planet 8 • Curriculum Vitae",
-  title: "Download My CV",
-  subtitle: "Professional Resume",
-  color: "text-blue-300",
+    neptune: {
+      badge: "♆ Planet 8 • Curriculum Vitae",
+      title: "Download My CV",
+      subtitle: "Professional Resume",
+      color: "text-blue-300",
 
-  render: () => `
+    render: () => `
     <div class="h-full flex flex-col justify-center space-y-6">
-
       <!-- Header -->
       <div class="text-center">
-
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full
-                    bg-blue-500/10 border border-blue-400/20
-                    text-blue-300 text-xs font-bold uppercase tracking-wider">
-
-          <i class="fa-solid fa-file-lines"></i>
-
-          Neptune Orbit • CV
-        </div>
-
-        <h2 class="mt-5 text-3xl sm:text-4xl font-black text-white tracking-tight">
-          My Curriculum Vitae
-        </h2>
-
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-xs font-bold uppercase tracking-wider">
+          <i class="fa-solid fa-file-lines"></i>Neptune Orbit • CV</div>
+        <h2 class="mt-5 text-3xl sm:text-4xl font-black text-white tracking-tight">My Curriculum Vitae</h2>
         <p class="mt-2 text-xs sm:text-sm text-slate-400">
           View my professional background, experience, skills and education.
         </p>
-
       </div>
-
 
       <!-- CV Card -->
-      <div class="relative overflow-hidden rounded-3xl
-                  border border-white/10
-                  bg-white/[0.04]
-                  -xl
-                  p-6 sm:p-8">
-
+      <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] -xl p-6 sm:p-8">
         <!-- Glow -->
-        <div class="absolute -top-20 -right-20
-                    w-48 h-48 rounded-full
-                    bg-blue-500/10 blur-3xl">
-        </div>
-
-        <div class="absolute -bottom-20 -left-20
-                    w-48 h-48 rounded-full
-                    bg-cyan-400/10 blur-3xl">
-        </div>
-
-
+        <div class="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-cyan-400/10 blur-3xl"></div>
         <div class="relative z-10 flex flex-col items-center text-center">
-
           <!-- Document Icon -->
           <div class="relative mb-5">
-
-            <div class="absolute inset-0 rounded-2xl
-                        bg-blue-400/20 blur-xl">
-            </div>
-
-            <div class="relative w-20 h-20 rounded-2xl
-                        bg-gradient-to-br from-blue-500/20 to-cyan-400/10
-                        border border-blue-400/30
-                        flex items-center justify-center">
-
+            <div class="absolute inset-0 rounded-2xl bg-blue-400/20 blur-xl"></div>
+            <div class="relative w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-400/10 border border-blue-400/30 flex items-center justify-center">
               <i class="fa-solid fa-file-pdf text-3xl text-blue-300"></i>
-
             </div>
-
           </div>
 
-
-          <h3 class="text-lg font-black text-white">
-            Shobo Mozumder
-          </h3>
-
-          <p class="mt-1 text-[10px] uppercase tracking-[0.2em]
-                    text-blue-300 font-bold">
-            Software Engineer
-          </p>
-
-
+          <h3 class="text-lg font-black text-white">Shobo Mozumder</h3>
+          <p class="mt-1 text-[10px] uppercase tracking-[0.2em] text-blue-300 font-bold">Software Engineer</p>
           <div class="mt-5 flex flex-wrap justify-center gap-2">
-
-            <span class="px-3 py-1.5 rounded-lg
-                         bg-slate-800/80
-                         border border-slate-700
-                         text-[10px] text-slate-300">
-              <i class="fa-solid fa-code mr-1 text-cyan-400"></i>
-              Software Engineering
+            <span class="px-3 py-1.5 rounded-lg /80 border border-slate-700 text-[10px] text-slate-300"> 
+              <i class="fa-solid fa-code mr-1 text-cyan-400"></i>Software Engineering
             </span>
-
-            <span class="px-3 py-1.5 rounded-lg
-                         bg-slate-800/80
-                         border border-slate-700
-                         text-[10px] text-slate-300">
-              <i class="fa-solid fa-layer-group mr-1 text-blue-400"></i>
-              Full Stack
+            <span class="px-3 py-1.5 rounded-lg /80 border border-slate-700 text-[10px] text-slate-300">
+              <i class="fa-solid fa-layer-group mr-1 text-blue-400"></i>Full Stack
             </span>
-
           </div>
 
-
-          <!-- Download Button -->
-          <a
-            href="CV.pdf"
-            download="Shobo-Mozumder-CV.pdf"
-            class="group relative mt-7 w-full max-w-sm h-12
-                   flex items-center justify-center gap-3
-                   overflow-hidden rounded-xl
-                   bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500
-                   text-sm font-black text-white
-                   shadow-lg shadow-blue-500/20
-                   transition-all duration-300
-                   hover:-translate-y-1
-                   hover:shadow-xl hover:shadow-blue-500/30"
-          >
-
+          <a href="Shobo_Mozumder_CV.pdf" download="Shobo-Mozumder-CV.pdf" class="group relative mt-7 w-full max-w-sm h-12
+                   flex items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 text-sm font-black text-white
+                   shadow-lg shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/30">
             <!-- Shine -->
-            <span
-              class="absolute inset-0 -translate-x-full
-                     bg-gradient-to-r
-                     from-transparent via-white/30 to-transparent
-                     transition-transform duration-700
-                     group-hover:translate-x-full">
-            </span>
-
-            <i class="relative z-10 fa-solid fa-download
-                      transition-transform duration-300
-                      group-hover:translate-y-1">
-            </i>
-
-            <span class="relative z-10">
-              Download CV
-            </span>
-
+            <span class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full"></span>
+            <i class="relative z-10 fa-solid fa-download transition-transform duration-300 group-hover:translate-y-1"></i>
+            <span class="relative z-10">Download CV</span>
           </a>
-
-
-          <p class="mt-4 text-[9px] text-slate-500">
-            PDF Format • Professional Resume
-          </p>
-
+          <p class="mt-4 text-[9px] text-slate-500">PDF Format • Professional Resume</p>
         </div>
-
       </div>
 
-
       <!-- Next Planet -->
-      <button
-        onclick="selectCelestialBody('sun')"
-        class="w-full py-3 rounded-xl
-               bg-slate-800 hover:bg-slate-700
-               text-blue-300
-               font-bold text-xs uppercase tracking-wider
-               border border-slate-700
-               transition-colors
-               flex items-center justify-center gap-2"
-      >
+      <button onclick="selectCelestialBody('sun')" class="w-full py-3 rounded-xl text-blue-300 font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors flex items-center justify-center gap-2">
         <span>Return to Sun • Home</span>
         <i class="fa-solid fa-house"></i>
       </button>
@@ -5137,29 +4506,48 @@ neptune: {
   `
 },
 
-};
+    blackhole: {
+        badge: "🌀 Cosmic Singularity • Event Horizon",
+        title: "Event Horizon & 3D Black Hole Anomaly",
+        subtitle: "Deep Space Singularity & Architectural Vision",
+        color: "text-purple-400",
+        render: () => `
+          <div class="space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/90 border border-purple-500/50 text-purple-300 text-xs font-semibold uppercase tracking-wider shadow-lg shadow-purple-500/30">
+              <i class="fa-solid fa-compact-disc animate-spin text-xs"></i> Event Horizon • Distance 46
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+              3D Black Hole Anomaly Integration
+            </h2>
+            <div class="glass-card p-6 rounded-2xl space-y-4 text-slate-300 text-xs sm:text-sm leading-relaxed border-purple-500/40">
+              <p>
+                Positioned at outer coordinate <strong>distance 46</strong>, the cosmic 3D Black Hole features a pitch-black outer celestial body surrounded by a luminous purple and orange accretion disk with photon ring refraction.
+              </p>
+              <div class="space-y-3 pt-2">
+                <div class="p-3 rounded-xl bg-purple-950/40 border border-purple-500/30">
+                  <h4 class="text-xs font-bold text-purple-300 uppercase mb-1"><i class="fa-solid fa-rocket mr-1"></i> Future Vision</h4>
+                  <p class="text-xs text-slate-300">Scalable space-simulation frameworks, immersive WebGL rendering pipelines, and interactive data visualization systems.</p>
+                </div>
+                <div class="p-3 rounded-xl bg-indigo-950/40 border border-indigo-500/30">
+                  <h4 class="text-xs font-bold text-indigo-300 uppercase mb-1"><i class="fa-solid fa-microchip mr-1"></i> Emerging Tech</h4>
+                  <p class="text-xs text-slate-300">Advanced GPU compute shaders, Three.js post-processing bloom effects, and high-performance microservice architecture.</p>
+                </div>
+              </div>
+            </div>
+            <button onclick="openBlackHoleModal()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-amber-500 hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider shadow-xl shadow-purple-500/30 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye"></i> View Singularity Details (Modal)
+            </button>
+          </div>
+        `
+      }
+  };
 
-    /* =========================================================
-   PROJECT DATA
-   ========================================================= */
-
-const projectDetails = {
-
+  /*PROJECT DATA*/
+  const projectDetails = {
   aura: {
     title: 'AURA QAD (BAT Bangladesh)',
     version: 'Enterprise System • Versions: V.01, V.02, V.03',
-
-    tech: [
-      'ASP.NET Core MVC',
-      'MSSQL',
-      'Oracle',
-      'JavaScript',
-      'jQuery',
-      'Ajax',
-      'Chart.js',
-      'HTML / CSS / Bootstrap'
-    ],
-
+    tech: ['ASP.NET Core MVC', 'MSSQL', 'Oracle', 'JavaScript', 'jQuery', 'Ajax', 'Chart.js', 'HTML / CSS / Bootstrap'],
     description: `
       <p class="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed mb-4 text-justify">
         AURA is an enterprise manufacturing intelligence platform
@@ -5189,17 +4577,7 @@ const projectDetails = {
   dcci: {
     title: 'DCCI ERP System (Dhaka Chamber)',
     version: 'Enterprise ERP System',
-
-    tech: [
-      'ASP.NET Core MVC',
-      'MSSQL Server',
-      'Entity Framework Core',
-      'RESTful APIs',
-      'React',
-      'Bootstrap',
-      'QuestPDF'
-    ],
-
+    tech: ['ASP.NET Core MVC', 'MSSQL Server', 'Entity Framework Core', 'RESTful APIs', 'React', 'Bootstrap', 'QuestPDF'],
     description: `
       <p class="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed mb-4 text-justify">
         A comprehensive Enterprise Resource Planning (ERP) solution
@@ -5229,14 +4607,7 @@ const projectDetails = {
   hbl: {
     title: 'HBL Heidelberg Email & SMS System',
     version: 'Enterprise Notification System',
-
-    tech: [
-      'ASP.NET Core MVC',
-      'MSSQL Server',
-      'JavaScript',
-      'SMS Gateway API'
-    ],
-
+    tech: ['ASP.NET Core MVC', 'MSSQL Server', 'JavaScript', 'SMS Gateway API'],
     description: `
       <p class="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed mb-4 text-justify">
         A modern enterprise messaging platform developed for
@@ -5265,15 +4636,7 @@ const projectDetails = {
   wallet: {
     title: 'Online Digital Wallet Platform',
     version: 'Personal / Portfolio Project',
-
-    tech: [
-      'ASP.NET Core MVC',
-      'MSSQL Server',
-      'SignalR',
-      'JavaScript',
-      'HTML / CSS / Bootstrap'
-    ],
-
+    tech: ['ASP.NET Core MVC', 'MSSQL Server', 'SignalR', 'JavaScript', 'HTML / CSS / Bootstrap'],
     description: `
       <p class="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed mb-4 text-justify">
         A web-based digital networking platform that enables users
@@ -5299,14 +4662,7 @@ const projectDetails = {
   ticket: {
     title: 'Ticket Management System',
     version: 'Personal / Portfolio Project',
-
-    tech: [
-      'ASP.NET Core MVC',
-      'MSSQL Server',
-      'SignalR',
-      'JavaScript',
-      'HTML / CSS / Bootstrap'
-    ],
+    tech: ['ASP.NET Core MVC', 'MSSQL Server', 'SignalR', 'JavaScript', 'HTML / CSS / Bootstrap'],
 
     description: `
       <p class="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed mb-4 text-justify">
@@ -5334,13 +4690,7 @@ const projectDetails = {
   job_Portal: {
     title: 'Online Job Portal',
     version: 'Personal / Portfolio Projects',
-
-    tech: [
-      'ASP.NET Core MVC',
-      'MSSQL Server',
-      'JavaScript',
-      'HTML / CSS / Bootstrap'
-    ],
+    tech: ['ASP.NET Core MVC', 'MSSQL Server', 'JavaScript', 'HTML / CSS / Bootstrap'],
 
     description: `
       <p class="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed mb-4 text-justify">
@@ -5366,40 +4716,18 @@ const projectDetails = {
   }
 };
 
-
-/* =========================================================
-   PROJECT MODAL
-   ========================================================= */
-
-function openProjectModal(key) {
-
+  /*PROJECT MODAL*/
+  function openProjectModal(key) {
   const data = projectDetails[key];
-
   if (!data) return;
-
-  const content =
-    document.getElementById('modal-content');
-
+  const content = document.getElementById('modal-content');
   if (!content) return;
-
   const techBadges =
     data.tech
       .map(
         tech => `
           <span
-            class="
-              px-2 py-1
-              sm:px-2.5 sm:py-1
-              rounded-lg
-              text-[9px] sm:text-xs
-              font-mono
-              bg-slate-800
-              text-cyan-300
-              border border-slate-700
-              font-semibold
-              break-words
-            "
-          >
+            class="px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg text-[9px] sm:text-xs font-mono  text-cyan-300 border border-slate-700 font-semibold break-words">
             ${tech}
           </span>
         `
@@ -5407,18 +4735,8 @@ function openProjectModal(key) {
       .join('');
 
   content.innerHTML = `
-
     <h3
-      class="
-        text-xl
-        sm:text-2xl
-        md:text-3xl
-        font-bold
-        text-white
-        mb-1
-        pr-8
-      "
-    >
+      class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 pr-8">
       ${data.title}
     </h3>
 
@@ -5426,15 +4744,7 @@ function openProjectModal(key) {
       data.version
         ? `
           <div
-            class="
-              text-[10px]
-              sm:text-xs
-              font-mono
-              text-cyan-300
-              font-bold
-              mb-4
-            "
-          >
+            class="text-[10px] sm:text-xs font-mono text-cyan-300 font-bold mb-4">
             ${data.version}
           </div>
         `
@@ -5446,143 +4756,75 @@ function openProjectModal(key) {
     </div>
 
     <div class="border-t border-slate-800/80 pt-4">
-
       <div
-        class="
-          text-[9px]
-          sm:text-[10px]
-          text-slate-300
-          font-bold
-          tracking-wider
-          uppercase
-          mb-2
-        "
-      >
+        class=" text-[9px] sm:text-[10px] text-slate-300 font-bold tracking-wider uppercase mb-2">
         TECH STACK
       </div>
-
       <div class="flex flex-wrap gap-1.5">
         ${techBadges}
       </div>
-
     </div>
   `;
 
-  const modal =
-    document.getElementById('project-modal');
-
+  const modal = document.getElementById('project-modal');
   if (!modal) return;
-
   modal.classList.remove('hidden');
   modal.classList.add('flex');
-
   document.body.classList.add('overflow-hidden');
 }
 
-
-/* =========================================================
-   CLOSE PROJECT MODAL
-   ========================================================= */
-
-function closeProjectModal() {
-
-  const modal =
-    document.getElementById('project-modal');
-
+  function closeProjectModal() {
+  const modal = document.getElementById('project-modal');
   if (!modal) return;
-
   modal.classList.add('hidden');
   modal.classList.remove('flex');
-
   document.body.classList.remove('overflow-hidden');
-
   resetToOrbitView();
 }
 
+  const projectModal = document.getElementById('project-modal');
 
-/* =========================================================
-   MODAL BACKDROP CLICK
-   ========================================================= */
-
-const projectModal =
-  document.getElementById('project-modal');
-
-if (projectModal) {
-
-  projectModal.addEventListener(
-    'click',
+  if (projectModal) {
+  projectModal.addEventListener('click',
     function (event) {
-
       if (event.target === this) {
         closeProjectModal();
       }
-
     }
   );
 }
 
-
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
-
-function toggleMobileMenu() {
-
-  const menu =
-    document.getElementById('mobile-menu');
-
+  function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
   if (!menu) return;
-
   menu.classList.toggle('hidden');
 }
 
+  const mobileMenuButton = document.getElementById('mobile-menu-btn');
 
-const mobileMenuButton =
-  document.getElementById('mobile-menu-btn');
-
-if (mobileMenuButton) {
-
+  if (mobileMenuButton) {
   mobileMenuButton.addEventListener(
     'click',
     toggleMobileMenu
   );
-
 }
 
-
-/* =========================================================
-   TERMINAL
-   ========================================================= */
-
-function handleTerminalCommand(event) {
-
+  function handleTerminalCommand(event) {
   event.preventDefault();
-
-  const input =
-    document.getElementById('terminal-input');
-
-  const output =
-    document.getElementById('terminal-output');
+  const input = document.getElementById('terminal-input');
+  const output = document.getElementById('terminal-output');
 
   if (!input || !output) return;
-
-  const cmd =
-    input.value.trim().toLowerCase();
+  const cmd = input.value.trim().toLowerCase();
 
   if (!cmd) return;
+  const newLine = document.createElement('div');
 
-  const newLine =
-    document.createElement('div');
-
-  newLine.innerHTML =
-    `<span class="text-amber-400 font-bold">$ ${cmd}</span>`;
-
+  newLine.innerHTML = `<span class="text-amber-400 font-bold">$ ${cmd}</span>`;
   output.appendChild(newLine);
-
   let responseText = '';
 
   if (cmd === 'help') {
-
     responseText =
       'Commands: ' +
       '<b>about</b>, ' +
@@ -5593,236 +4835,107 @@ function handleTerminalCommand(event) {
       '<b>education</b>, ' +
       '<b>contact</b>, ' +
       '<b>clear</b>';
-
   }
 
   else if (cmd === 'about') {
-
     selectCelestialBody('mercury');
-
-    responseText =
-      'Warping to Mercury (About)...';
-
+    responseText = 'Warping to Mercury (About)...';
   }
 
   else if (cmd === 'skills') {
-
     selectCelestialBody('venus');
-
-    responseText =
-      'Warping to Venus (Academic & Reference)...';
-
+    responseText = 'Warping to Venus (Academic & Reference)...';
   }
 
   else if (cmd === 'info') {
-
     selectCelestialBody('earth');
-
-    responseText =
-      'Warping to Earth (Tech Stack Matrix)...';
-
+    responseText = 'Warping to Earth (Tech Stack Matrix)...';
   }
 
   else if (cmd === 'experience') {
-
     selectCelestialBody('moon');
-
-    responseText =
-      'Warping to Moon (Employment)...';
-
+    responseText = 'Warping to Moon (Employment)...';
   }
 
   else if (cmd === 'projects') {
-
     selectCelestialBody('mars');
-
-    responseText =
-      'Warping to Mars (Projects)...';
-
+    responseText = 'Warping to Mars (Projects)...';
   }
 
   else if (cmd === 'education') {
-
     selectCelestialBody('jupiter');
-
-    responseText =
-      'Warping to Jupiter (Applications)...';
-
+    responseText = 'Warping to Jupiter (Applications)...';
   }
 
   else if (cmd === 'contact') {
-
     selectCelestialBody('saturn');
-
-    responseText =
-      'Warping to Saturn (Contact)...';
-
+    responseText = 'Warping to Saturn (Contact)...';
   }
 
   else if (cmd === 'clear') {
-
     output.innerHTML = '';
     input.value = '';
-
     return;
-
   }
 
   else {
-
     responseText =
       `Command '${cmd}' not recognized. ` +
       `Try 'about', 'skills', 'experience', ` +
       `'projects', 'education', or 'contact'.`;
-
   }
 
-  const resLine =
-    document.createElement('div');
-
-  resLine.className =
-    'text-slate-200 pl-2 border-l border-amber-500/50 font-medium';
-
-  resLine.innerHTML =
-    responseText;
-
+  const resLine = document.createElement('div');
+  resLine.className = 'text-slate-200 pl-2 border-l border-amber-500/50 font-medium';
+  resLine.innerHTML = responseText;
   output.appendChild(resLine);
-
-  output.scrollTop =
-    output.scrollHeight;
-
+  output.scrollTop = output.scrollHeight;
   input.value = '';
 }
 
+  let scene;
+  let camera;
+  let renderer;
+  let controls;
+  let celestialBodies = [];
+  let interactableMeshes = [];
+  let selectedBody = null;
+  let isTransitioning = false;
+  let targetCamPos =  new THREE.Vector3();
+  let targetLookAt =  new THREE.Vector3();
+  const initialCameraPos =  new THREE.Vector3(0, 34, 60);
 
-/* =========================================================
-   THREE.JS VARIABLES
-   ========================================================= */
-
-let scene;
-let camera;
-let renderer;
-let controls;
-
-let celestialBodies = [];
-let interactableMeshes = [];
-
-let selectedBody = null;
-
-let isTransitioning = false;
-
-let targetCamPos =
-  new THREE.Vector3();
-
-let targetLookAt =
-  new THREE.Vector3();
-
-const initialCameraPos =
-  new THREE.Vector3(0, 34, 60);
-
-
-/* =========================================================
-   ROCKET
-   ========================================================= */
-
-let rocketMesh = null;
-
-let rocketJourney = {
-
+  let rocketMesh = null;
+  let rocketJourney = {
   active: false,
-
-  startPos:
-    new THREE.Vector3(),
-
-  endPos:
-    new THREE.Vector3(),
-
+  startPos: new THREE.Vector3(),
+  endPos: new THREE.Vector3(),
   progress: 0
-
 };
 
+  const isMobile =  window.matchMedia('(max-width: 767px)').matches;
+  const isTablet =  window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches;
+  const PLANET_SEGMENTS =  isMobile ? 40 : isTablet ? 56 : 72;
+  const STAR_COUNT =  isMobile ? 1200 : isTablet ? 2500 : 5000;
+  const MAX_PIXEL_RATIO =  isMobile ? 1.25 : isTablet ? 1.5 : 1.75;
 
-/* =========================================================
-   PERFORMANCE SETTINGS
-   ========================================================= */
-
-const isMobile =
-  window.matchMedia('(max-width: 767px)').matches;
-
-const isTablet =
-  window.matchMedia(
-    '(min-width: 768px) and (max-width: 1023px)'
-  ).matches;
-
-
-/*
- * Reduce geometry on smaller devices.
- */
-
-const PLANET_SEGMENTS =
-  isMobile
-    ? 40
-    : isTablet
-      ? 56
-      : 72;
-
-
-/*
- * Reduce star count on mobile.
- */
-
-const STAR_COUNT =
-  isMobile
-    ? 1200
-    : isTablet
-      ? 2500
-      : 5000;
-
-
-/*
- * Never allow huge mobile pixel ratios.
- */
-
-const MAX_PIXEL_RATIO =
-  isMobile
-    ? 1.25
-    : isTablet
-      ? 1.5
-      : 1.75;
-
-
-/* =========================================================
-   CELESTIAL SPECS
-   ========================================================= */
-
-const celestialSpecs = [
-
+  const celestialSpecs = [
   {
     id: 'sun',
     name: '☀️ Sun',
     role: 'Profile & Bio',
-
     r: 10,
     dist: 0,
     type: 'sun',
     speed: 0,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/sun.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #451a03 0%, #02040a 75%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/sun.jpg',
+    themeBg: 'radial-gradient(circle at center, #451a03 0%, #02040a 75%)',
     ambientColor: 0xffaa33,
-
     roughness: 0.35,
     metalness: 0,
-
     emissive: 0xff5500,
     emissiveIntensity: 1.8,
-
     rotationSpeed: 0.025,
-
     glow: true,
     glowColor: 0xff7700,
     glowIntensity: 2
@@ -5832,26 +4945,17 @@ const celestialSpecs = [
     id: 'mercury',
     name: '☿ Mercury',
     role: 'About',
-
     r: 2.4,
     dist: 20,
     type: 'planet',
     speed: 0.014,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mercury.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #374151 0%, #02040a 75%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mercury.jpg',
+    themeBg: 'radial-gradient(circle at center, #374151 0%, #02040a 75%)',
     ambientColor: 0x999999,
-
     roughness: 0.95,
     metalness: 0,
-
     emissive: 0,
     emissiveIntensity: 0,
-
     rotationSpeed: 0.08
   },
 
@@ -5859,28 +4963,18 @@ const celestialSpecs = [
     id: 'venus',
     name: '♀ Venus',
     role: 'Academic & Reference',
-
     r: 4,
-    dist: 34,
+    dist: 35,
     type: 'planet',
     speed: 0.01,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/venus_surface.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #78350f 0%, #02040a 75%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/venus_surface.jpg',
+    themeBg: 'radial-gradient(circle at center, #78350f 0%, #02040a 75%)',
     ambientColor: 0xd97706,
-
     roughness: 0.9,
     metalness: 0,
-
     emissive: 0x050200,
     emissiveIntensity: 0.03,
-
     rotationSpeed: 0.06,
-
     atmosphere: true,
     atmosphereColor: 0xffb866,
     atmosphereOpacity: 0.08
@@ -5890,34 +4984,20 @@ const celestialSpecs = [
     id: 'earth',
     name: '🌍 Earth',
     role: 'Tech Stack Matrix',
-
     r: 5,
-    dist: 46,
+    dist: 50,
     type: 'earth',
     speed: 0.007,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg',
-
-    bump:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg',
-
-    spec:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #0c3558 0%, #02040a 75%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg',
+    bump: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg',
+    spec: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg',
+    themeBg: 'radial-gradient(circle at center, #0c3558 0%, #02040a 75%)',
     ambientColor: 0x168bd1,
-
     roughness: 0.7,
     metalness: 0,
-
     emissive: 0,
     emissiveIntensity: 0,
-
     rotationSpeed: 0.12,
-
     atmosphere: true,
     atmosphereColor: 0x3b82f6,
     atmosphereOpacity: 0.22
@@ -5927,26 +5007,17 @@ const celestialSpecs = [
     id: 'mars',
     name: '♂ Mars',
     role: 'Projects',
-
     r: 3.5,
-    dist: 30,
+    dist: 62,
     type: 'planet',
     speed: 0.005,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars_1k.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #3a1712 0%, #080504 45%, #02040a 82%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/mars_1k.jpg',
+    themeBg: 'radial-gradient(circle at center, #3a1712 0%, #080504 45%, #02040a 82%)',
     ambientColor: 0x8f4938,
-
     roughness: 0.98,
     metalness: 0,
-
     emissive: 0,
     emissiveIntensity: 0,
-
     rotationSpeed: 0.025
   },
 
@@ -5954,28 +5025,18 @@ const celestialSpecs = [
     id: 'jupiter',
     name: '♃ Jupiter',
     role: 'Applications',
-
     r: 7.2,
-    dist: 72,
+    dist: 78,
     type: 'planet',
     speed: 0.003,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/jupiter.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #3a2921 0%, #100a07 48%, #02040a 82%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/jupiter.jpg',
+    themeBg: 'radial-gradient(circle at center, #3a2921 0%, #100a07 48%, #02040a 82%)',
     ambientColor: 0xb88965,
-
     roughness: 0.94,
     metalness: 0,
-
     emissive: 0,
     emissiveIntensity: 0,
-
     rotationSpeed: 0.018,
-
     atmosphere: true,
     atmosphereColor: 0xc99a73,
     atmosphereOpacity: 0.035
@@ -5985,121 +5046,96 @@ const celestialSpecs = [
     id: 'saturn',
     name: '♄ Saturn',
     role: 'Contact',
-
     r: 6,
-    dist: 86,
+    dist: 95,
     type: 'planet',
     speed: 0.002,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/saturn.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #422006 0%, #02040a 75%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/saturn.jpg',
+    themeBg: 'radial-gradient(circle at center, #422006 0%, #02040a 75%)',
     ambientColor: 0xe8c980,
-
     roughness: 0.88,
     metalness: 0,
-
     emissive: 0x020100,
     emissiveIntensity: 0.01,
-
     rotationSpeed: 0.14,
-
     rings: true,
-
     ringInnerRadius: 1.15,
     ringOuterRadius: 2.4,
-
     ringColor: 0xe8d6aa,
     ringOpacity: 0.82,
-
     ringRoughness: 0.92,
-
-    ringTilt:
-      THREE.MathUtils.degToRad(26.7),
-
-    ringSegments:
-      isMobile ? 96 : 160
+    ringTilt: THREE.MathUtils.degToRad(26.7),
+    ringSegments: isMobile ? 96 : 160
   },
 
   {
     id: 'neptune',
     name: '♆ Neptune',
     role: 'Download CV',
-
     r: 5.3,
-    dist: 104,
+    dist: 110,
     type: 'planet',
     speed: 0.0015,
-
-    map:
-      'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/neptune.jpg',
-
-    themeBg:
-      'radial-gradient(circle at center, #172554 0%, #02040a 75%)',
-
+    map: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/neptune.jpg',
+    themeBg: 'radial-gradient(circle at center, #172554 0%, #02040a 75%)',
     ambientColor: 0x3b82f6,
-
     roughness: 0.82,
     metalness: 0,
-
     emissive: 0x010817,
     emissiveIntensity: 0.04,
-
     rotationSpeed: 0.12,
-
     atmosphere: true,
     atmosphereColor: 0x2563eb,
     atmosphereOpacity: 0.16
-  }
+   }
+//,
+
+// {
+//   id: 'blackhole',
+//   name: '🕳️ Black Hole',
+//   role: 'Event Horizon / Future Vision',
+
+//   r: 5.8,
+//   dist: 46,
+
+//   type: 'blackhole',
+
+//   speed: 0,
+//   rotationSpeed: 0,
+
+//   ambientColor: 0x020204,
+
+//   roughness: 1,
+//   metalness: 0,
+
+//   emissive: 0x000000,
+//   emissiveIntensity: 0
+// }
 ];
 
-
-/* =========================================================
-   BACKGROUND
-   ========================================================= */
-
-document.body.style.transition =
-  'background 0.8s ease-in-out';
-
-
-function focusOnCelestialObject(id) {
-
+  document.body.style.transition = 'background 0.8s ease-in-out';
+  function focusOnCelestialObject(id) {
   const spec =
     celestialSpecs.find(
       item => item.id === id
     );
 
   if (!spec) return;
-
   if (spec.themeBg) {
-
-    document.body.style.background =
-      spec.themeBg;
-
+    document.body.style.background = spec.themeBg;
   }
 
   document
     .querySelectorAll('.planet-badge')
     .forEach(badge => {
-
       badge.classList.toggle(
         'active-target',
         badge.dataset.id === id
       );
-
     });
 }
 
-
-/* =========================================================
-   INITIALIZE
-   ========================================================= */
-
-function initSolarSystem() {
-
+  function initSolarSystem() {
   const container =
     document.getElementById(
       'webgl-container'
@@ -6114,12 +5150,8 @@ function initSolarSystem() {
 
   celestialBodies = [];
   interactableMeshes = [];
-
-  scene =
-    new THREE.Scene();
-
-  scene.background =
-    new THREE.Color(0x02040a);
+  scene =new THREE.Scene();
+  scene.background =new THREE.Color(0x02040a);
 
   scene.fog =
     new THREE.FogExp2(
@@ -6128,11 +5160,6 @@ function initSolarSystem() {
         ? 0.0025
         : 0.0018
     );
-
-
-  /* =======================================================
-     CAMERA
-     ======================================================= */
 
   camera =
     new THREE.PerspectiveCamera(
@@ -6147,31 +5174,18 @@ function initSolarSystem() {
     initialCameraPos
   );
 
-
-  /* =======================================================
-     RENDERER
-     ======================================================= */
-
   renderer =
     new THREE.WebGLRenderer({
-
-      antialias:
-        !isMobile,
-
+      antialias: !isMobile,
       alpha: true,
-
-      powerPreference:
-        'high-performance'
-
+      powerPreference: 'high-performance'
     });
-
 
   renderer.setSize(
     window.innerWidth,
     window.innerHeight,
     false
   );
-
 
   renderer.setPixelRatio(
     Math.min(
@@ -6180,35 +5194,17 @@ function initSolarSystem() {
     )
   );
 
-
-  if (
-    'outputColorSpace'
-    in renderer
-  ) {
-
-    renderer.outputColorSpace =
-      THREE.SRGBColorSpace;
-
+  if ('outputColorSpace' in renderer  )
+   {
+    renderer.outputColorSpace =THREE.SRGBColorSpace;
   }
 
-
-  renderer.toneMapping =
-    THREE.ACESFilmicToneMapping;
-
-  renderer.toneMappingExposure =
-    isMobile ? 1.05 : 1.15;
-
-
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = isMobile ? 1.05 : 1.15;
   container.innerHTML = '';
-
   container.appendChild(
     renderer.domElement
   );
-
-
-  /* =======================================================
-     ORBIT CONTROLS
-     ======================================================= */
 
   controls =
     new THREE.OrbitControls(
@@ -6217,44 +5213,17 @@ function initSolarSystem() {
     );
 
   controls.enableDamping = true;
-
-  controls.dampingFactor =
-    isMobile ? 0.08 : 0.05;
-
+  controls.dampingFactor = isMobile ? 0.08 : 0.05;
   controls.minDistance = 5;
-
-  controls.maxDistance =
-    isMobile ? 150 : 180;
-
-  /*
-   * Important:
-   * Pan causes mobile interaction conflicts.
-   */
+  controls.maxDistance = isMobile ? 150 : 180;
   controls.enablePan = false;
-
   controls.enableZoom = true;
-
-  controls.rotateSpeed =
-    isMobile ? 0.55 : 0.8;
-
-  controls.zoomSpeed =
-    isMobile ? 0.6 : 1;
-
-
-  /* =======================================================
-     LIGHTING
-     ======================================================= */
-
-  const ambientLight =
-    new THREE.AmbientLight(
-      0xffffff,
-      isMobile ? 0.12 : 0.08
-    );
-
+  controls.rotateSpeed = isMobile ? 0.55 : 0.8;
+  controls.zoomSpeed = isMobile ? 0.6 : 1;
+  const ambientLight = new THREE.AmbientLight(0xffffff, isMobile ? 0.12 : 0.08);
   scene.add(
     ambientLight
   );
-
 
   const sunLight =
     new THREE.PointLight(
@@ -6274,7 +5243,6 @@ function initSolarSystem() {
     sunLight
   );
 
-
   const warmLight =
     new THREE.PointLight(
       0xffc27a,
@@ -6293,32 +5261,11 @@ function initSolarSystem() {
     warmLight
   );
 
-
-  /* =======================================================
-     STARFIELD
-     ======================================================= */
-
   createStarField();
-
-
-  /* =======================================================
-     TEXTURE LOADER
-     ======================================================= */
-
-  const textureLoader =
-    new THREE.TextureLoader();
-
-  textureLoader.crossOrigin =
-    'anonymous';
-
-
-  /* =======================================================
-     PLANETS
-     ======================================================= */
-
+  const textureLoader = new THREE.TextureLoader();
+  textureLoader.crossOrigin = 'anonymous';
   celestialSpecs.forEach(
     spec => {
-
       createCelestialBody(
         spec,
         textureLoader,
@@ -6328,80 +5275,33 @@ function initSolarSystem() {
     }
   );
 
-
-  /* =======================================================
-     RESIZE
-     ======================================================= */
-
   window.addEventListener(
     'resize',
     onWindowResize,
     { passive: true }
   );
 
-
-  /*
-   * Orientation change can produce a wrong camera
-   * aspect ratio on some phones.
-   */
-
   window.addEventListener(
     'orientationchange',
     () => {
-
       setTimeout(
         onWindowResize,
         150
       );
-
     },
     { passive: true }
   );
-
-
-  /* =======================================================
-     RAYCASTING
-     ======================================================= */
-
   setupRaycasting();
-
-
-  /* =======================================================
-     DRAWER SWIPE
-     ======================================================= */
-
   setupDrawerSwipe();
-
-
-  /* =======================================================
-     BUTTONS
-     ======================================================= */
-
   setupButtons();
-
-
-  /*
-   * DO NOT CALL animate() HERE.
-   *
-   * It is called only once from window.onload.
-   */
 }
 
-
-/* =========================================================
-   STAR FIELD
-   ========================================================= */
-
-function createStarField() {
-
-  const starGeo =
-    new THREE.BufferGeometry();
-
+  function createStarField() {
+  const starGeo = new THREE.BufferGeometry();
   const starPositions =
     new Float32Array(
       STAR_COUNT * 3
     );
-
 
   for (
     let i = 0;
@@ -6411,9 +5311,7 @@ function createStarField() {
 
     starPositions[i] =
       (Math.random() - 0.5) * 600;
-
   }
-
 
   starGeo.setAttribute(
     'position',
@@ -6423,25 +5321,17 @@ function createStarField() {
     )
   );
 
-
   const starMat =
     new THREE.PointsMaterial({
-
       color: 0xffffff,
-
       size:
         isMobile
           ? 0.45
           : 0.65,
-
       transparent: true,
-
       opacity: 0.9,
-
       sizeAttenuation: true
-
     });
-
 
   const starField =
     new THREE.Points(
@@ -6454,23 +5344,9 @@ function createStarField() {
   );
 }
 
-
-/* =========================================================
-   CREATE CELESTIAL BODY
-   ========================================================= */
-
-function createCelestialBody(
-  spec,
-  textureLoader,
-  labelsOverlay
-) {
-
-  /* =======================================================
-     ORBIT
-     ======================================================= */
-
+  function createCelestialBody(spec, textureLoader, labelsOverlay) 
+  {
   if (spec.dist > 0) {
-
     const orbitGeo =
       new THREE.RingGeometry(
         spec.dist - 0.035,
@@ -6478,275 +5354,101 @@ function createCelestialBody(
         isMobile ? 64 : 96
       );
 
-
-    const orbitMat =
-      new THREE.MeshBasicMaterial({
-
+    const orbitMat = new THREE.MeshBasicMaterial({
         color: 0x38bdf8,
-
         transparent: true,
-
-        opacity:
-          isMobile ? 0.08 : 0.12,
-
-        side:
-          THREE.DoubleSide
-
+        opacity: isMobile ? 0.08 : 0.12,
+        side:THREE.DoubleSide
       });
 
-
-    const orbit =
-      new THREE.Mesh(
-        orbitGeo,
-        orbitMat
-      );
-
-
-    orbit.rotation.x =
-      Math.PI / 2;
-
-
-    scene.add(
-      orbit
-    );
+    const orbit = new THREE.Mesh(orbitGeo, orbitMat);
+    orbit.rotation.x = Math.PI / 2;
+    scene.add(orbit);
   }
 
+  const pivot =new THREE.Group();
+  scene.add(pivot);
 
-  /* =======================================================
-     PIVOT
-     ======================================================= */
-
-  const pivot =
-    new THREE.Group();
-
-  scene.add(
-    pivot
-  );
-
-
-  /* =======================================================
-     PLANET GEOMETRY
-     ======================================================= */
-
-  const geo =
-    new THREE.SphereGeometry(
+  const geo = new THREE.SphereGeometry(
       spec.r,
       PLANET_SEGMENTS,
       PLANET_SEGMENTS
     );
 
-
-  /* =======================================================
-     MATERIAL
-     ======================================================= */
-
   let mat;
 
-
   if (spec.type === 'sun') {
-
-    mat =
-      new THREE.MeshStandardMaterial({
-
+    mat = new THREE.MeshStandardMaterial({
         color: 0xffaa00,
-
         roughness: 0.25,
-
         metalness: 0,
-
         emissive: 0xff6500,
-
         emissiveIntensity: 1.5
-
       });
-
   }
 
   else {
-
-    /*
-     * Explicit base color prevents white fallback
-     * when texture is still loading.
-     */
-
-    mat =
-      new THREE.MeshStandardMaterial({
-
-        color:
-          spec.ambientColor ||
-          0xaaaaaa,
-
-        roughness:
-          spec.roughness ?? 0.85,
-
-        metalness:
-          spec.metalness ?? 0,
-
-        emissive:
-          spec.emissive ?? 0x000000,
-
-        emissiveIntensity:
-          spec.emissiveIntensity ?? 0
-
+    mat = new THREE.MeshStandardMaterial({
+        color: spec.ambientColor || 0xaaaaaa,
+        roughness: spec.roughness ?? 0.85,
+        metalness:          spec.metalness ?? 0,
+        emissive:          spec.emissive ?? 0x000000,
+        emissiveIntensity:          spec.emissiveIntensity ?? 0
       });
-
   }
-
-
-  /* =======================================================
-     TEXTURE
-     ======================================================= */
 
   if (spec.map) {
-
-    textureLoader.load(
-
-      spec.map,
-
+    textureLoader.load(spec.map,
       texture => {
-
-        texture.colorSpace =
-          THREE.SRGBColorSpace;
-
-        texture.anisotropy =
-          Math.min(
-            renderer.capabilities.getMaxAnisotropy(),
+        texture.colorSpace =THREE.SRGBColorSpace;
+        texture.anisotropy =Math.min(renderer.capabilities.getMaxAnisotropy(),
             isMobile ? 2 : 4
           );
-
-        mat.map =
-          texture;
-
-        /*
-         * Once texture exists,
-         * use white so actual texture shows correctly.
-         */
-
-        mat.color.set(
-          0xffffff
-        );
-
-        mat.needsUpdate =
-          true;
-
+        mat.map =texture;
+        mat.color.set(0xffffff);
+        mat.needsUpdate =true;
       },
-
       undefined,
-
       error => {
-
-        console.warn(
-          `Texture failed: ${spec.id}`,
+        console.warn(`Texture failed: ${spec.id}`,
           error
         );
-
       }
-
     );
-
   }
-
-
-  /* =======================================================
-     BUMP
-     ======================================================= */
 
   if (spec.bump) {
-
-    textureLoader.load(
-
-      spec.bump,
-
+    textureLoader.load(spec.bump,
       texture => {
-
-        texture.colorSpace =
-          THREE.NoColorSpace;
-
-        mat.bumpMap =
-          texture;
-
-        mat.bumpScale =
-          spec.id === 'mars'
-            ? 0.12
-            : 0.05;
-
+        texture.colorSpace =THREE.NoColorSpace;
+        mat.bumpMap =texture;
+        mat.bumpScale =spec.id === 'mars' ? 0.12 : 0.05;
         mat.needsUpdate =
           true;
-
       }
-
     );
-
   }
-
-
-  /* =======================================================
-     SPECULAR
-     ======================================================= */
 
   if (spec.spec) {
-
     textureLoader.load(
-
       spec.spec,
-
       texture => {
-
-        texture.colorSpace =
-          THREE.NoColorSpace;
-
-        /*
-         * Keep your existing behavior.
-         */
-
-        mat.roughnessMap =
-          texture;
-
-        mat.needsUpdate =
-          true;
-
+        texture.colorSpace =THREE.NoColorSpace;
+        mat.roughnessMap =texture;
+        mat.needsUpdate =true;
       }
-
     );
-
   }
-
-
-  /* =======================================================
-     MESH
-     ======================================================= */
-
-  const mesh =
-    new THREE.Mesh(
-      geo,
-      mat
-    );
-
-
-  mesh.position.x =
-    spec.dist;
-
-
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.position.x = spec.dist;
   mesh.userData = {
-
     id: spec.id,
-
     name: spec.name
-
   };
 
-
-  pivot.add(
-    mesh
-  );
-
-
-  /* =======================================================
-     ATMOSPHERE
-     ======================================================= */
+  pivot.add(mesh);
 
   if (spec.atmosphere) {
-
     const atmosphereGeo =
       new THREE.SphereGeometry(
         spec.r * 1.025,
@@ -6754,30 +5456,14 @@ function createCelestialBody(
         isMobile ? 32 : 48
       );
 
-
-    const atmosphereMat =
-      new THREE.MeshBasicMaterial({
-
-        color:
-          spec.atmosphereColor ||
-          0x3b82f6,
-
+    const atmosphereMat =new THREE.MeshBasicMaterial({
+        color: spec.atmosphereColor || 0x3b82f6,
         transparent: true,
-
-        opacity:
-          spec.atmosphereOpacity ||
-          0.035,
-
-        side:
-          THREE.BackSide,
-
-        blending:
-          THREE.AdditiveBlending,
-
+        opacity: spec.atmosphereOpacity || 0.035,
+        side:          THREE.BackSide,
+        blending:          THREE.AdditiveBlending,
         depthWrite: false
-
       });
-
 
     const atmosphere =
       new THREE.Mesh(
@@ -6785,24 +5471,11 @@ function createCelestialBody(
         atmosphereMat
       );
 
-
-    mesh.add(
-      atmosphere
-    );
-
-
-    mesh.userData.atmosphere =
-      atmosphere;
-
+    mesh.add(atmosphere);
+    mesh.userData.atmosphere =atmosphere;
   }
 
-
-  /* =======================================================
-     JUPITER RIM
-     ======================================================= */
-
   if (spec.id === 'jupiter') {
-
     const rimGeo =
       new THREE.SphereGeometry(
         spec.r * 1.045,
@@ -6810,26 +5483,15 @@ function createCelestialBody(
         isMobile ? 32 : 48
       );
 
-
     const rimMat =
       new THREE.MeshBasicMaterial({
-
         color: 0xd69b6b,
-
         transparent: true,
-
         opacity: 0.12,
-
-        side:
-          THREE.BackSide,
-
-        blending:
-          THREE.AdditiveBlending,
-
+        side:THREE.BackSide,
+        blending:THREE.AdditiveBlending,
         depthWrite: false
-
       });
-
 
     const rim =
       new THREE.Mesh(
@@ -6837,56 +5499,93 @@ function createCelestialBody(
         rimMat
       );
 
-
     mesh.add(
       rim
     );
-
 
     mesh.userData.jupiterRim =
       rim;
 
   }
 
-
-  /* =======================================================
-     SATURN RINGS
-     ======================================================= */
-
-  if (
-    spec.id === 'saturn' &&
-    spec.rings
-  ) {
-
-    createSaturnRings(
-      spec,
-      mesh
-    );
-
+     /*SATURN RINGS */
+  if (spec.id === 'saturn' && spec.rings  ) 
+  {
+    createSaturnRings(spec, mesh);
   }
 
 
-  /* =======================================================
-     EARTH CLOUDS
-     ======================================================= */
 
+// if (spec.id === 'blackhole') {
+//     // =========================
+//     // ACCRETION DISK
+//     // =========================
+//     const diskGeo = new THREE.RingGeometry(
+//         spec.r * 1.4,
+//         spec.r * 3.2,
+//         96
+//     );
+
+//     const diskMat = new THREE.MeshBasicMaterial({
+//         color: 0xa855f7,
+//         side: THREE.DoubleSide,
+//         transparent: true,
+//         opacity: 0.75,
+//         depthWrite: false
+//     });
+
+//     const diskMesh = new THREE.Mesh(diskGeo, diskMat);
+
+//     diskMesh.rotation.x = Math.PI / 2.2;
+
+//     mesh.add(diskMesh);
+
+
+//     // =========================
+//     // PHOTON RING
+//     // =========================
+//     const photonGeo = new THREE.RingGeometry(
+//         spec.r * 1.1,
+//         spec.r * 1.35,
+//         96
+//     );
+
+//     const photonMat = new THREE.MeshBasicMaterial({
+//         color: 0xf97316,
+//         side: THREE.DoubleSide,
+//         transparent: true,
+//         opacity: 0.9,
+//         depthWrite: false
+//     });
+
+//     const photonMesh = new THREE.Mesh(
+//         photonGeo,
+//         photonMat
+//     );
+
+//     photonMesh.rotation.x = Math.PI / 2.2;
+
+//     mesh.add(photonMesh);
+
+
+//     // Keep references for animation
+//     mesh.userData.isBlackHole = true;
+//     mesh.userData.disk = diskMesh;
+//     mesh.userData.photonRing = photonMesh;
+// }
+
+
+  /*EARTH CLOUDS*/
   if (spec.id === 'earth') {
-
     createEarthClouds(
       spec,
       mesh,
       textureLoader
     );
-
   }
 
-
-  /* =======================================================
-     SUN GLOW
-     ======================================================= */
-
+  //  SUN GLOW
   if (spec.type === 'sun') {
-
     const glowGeo =
       new THREE.SphereGeometry(
         spec.r * 1.18,
@@ -6894,26 +5593,13 @@ function createCelestialBody(
         isMobile ? 24 : 40
       );
 
-
-    const glowMat =
-      new THREE.MeshBasicMaterial({
-
-        color:
-          spec.glowColor ||
-          0xffaa22,
-
+    const glowMat =new THREE.MeshBasicMaterial({
+        color: spec.glowColor || 0xffaa22,
         transparent: true,
-
-        opacity:
-          isMobile ? 0.12 : 0.18,
-
-        blending:
-          THREE.AdditiveBlending,
-
+        opacity: isMobile ? 0.12 : 0.18,
+        blending: THREE.AdditiveBlending,
         depthWrite: false
-
       });
-
 
     const glow =
       new THREE.Mesh(
@@ -6921,36 +5607,16 @@ function createCelestialBody(
         glowMat
       );
 
-
-    mesh.add(
-      glow
-    );
-
-
-    mesh.userData.sunGlow =
-      glow;
-
+    mesh.add(glow);
+    mesh.userData.sunGlow = glow;
   }
 
-
-  /* =======================================================
-     LABEL
-     ======================================================= */
-
-  const badgeEl =
-    document.createElement(
+  const badgeEl = document.createElement(
       'div'
     );
 
-
-  badgeEl.className =
-    'planet-badge';
-
-
-  badgeEl.dataset.id =
-    spec.id;
-
-
+  badgeEl.className = 'planet-badge';
+  badgeEl.dataset.id = spec.id;
   badgeEl.innerHTML = `
     ${spec.name}
     <span class="text-[10px] opacity-75">
@@ -6958,110 +5624,61 @@ function createCelestialBody(
     </span>
   `;
 
-
   badgeEl.addEventListener(
     'click',
     event => {
-
       event.stopPropagation();
-
       selectCelestialBody(
         spec.id
       );
-
     }
   );
-
 
   labelsOverlay.appendChild(
     badgeEl
   );
 
-
-  /* =======================================================
-     STORE
-     ======================================================= */
-
   const body = {
-
     id: spec.id,
-
     pivot,
-
     mesh,
-
-    speed:
-      spec.speed ?? 0,
-
-    rotationSpeed:
-      spec.rotationSpeed ?? 0.01,
-
+    speed: spec.speed ?? 0,
+    rotationSpeed: spec.rotationSpeed ?? 0.01,
     el: badgeEl,
-
     radius: spec.r
-
   };
-
 
   celestialBodies.push(
     body
   );
 
-
   interactableMeshes.push(
     mesh
   );
 
-
-  /* =======================================================
-     MOON
-     ======================================================= */
-
   if (spec.id === 'earth') {
-
     createMoon(
       mesh,
       textureLoader,
       labelsOverlay
     );
-
   }
 }
 
-
-/* =========================================================
-   SATURN RINGS
-   ========================================================= */
-
-function createSaturnRings(
-  spec,
-  mesh
-) {
-
-  const ringGroup =
-    new THREE.Group();
-
-
+  function createSaturnRings(spec, mesh)
+ {
+  const ringGroup =  new THREE.Group();
   const ringBands = [
-
     [1.15, 1.27, 0.82],
-
     [1.30, 1.46, 0.52],
-
     [1.49, 1.68, 0.78],
-
     [1.71, 1.87, 0.42],
-
     [1.90, 2.08, 0.70],
-
     [2.11, 2.40, 0.55]
-
   ];
-
 
   ringBands.forEach(
     ([inner, outer, opacity]) => {
-
       const ringGeo =
         new THREE.RingGeometry(
           spec.r * inner,
@@ -7069,76 +5686,29 @@ function createSaturnRings(
           spec.ringSegments
         );
 
-
-      const ringMat =
-        new THREE.MeshStandardMaterial({
-
-          color:
-            spec.ringColor ||
-            0xe8d6aa,
-
-          roughness:
-            spec.ringRoughness ||
-            0.92,
-
+      const ringMat = new THREE.MeshStandardMaterial({
+          color: spec.ringColor || 0xe8d6aa,
+          roughness: spec.ringRoughness || 0.92,
           metalness: 0,
-
           transparent: true,
-
           opacity,
-
-          side:
-            THREE.DoubleSide,
-
+          side: THREE.DoubleSide,
           depthWrite: false
-
         });
 
-
-      const ring =
-        new THREE.Mesh(
-          ringGeo,
-          ringMat
-        );
-
-
-      ring.rotation.x =
-        Math.PI / 2;
-
-
-      ringGroup.add(
-        ring
-      );
-
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2;
+      ringGroup.add(ring);
     }
   );
 
-
-  ringGroup.rotation.z =
-    spec.ringTilt ||
-    THREE.MathUtils.degToRad(26.7);
-
-
-  mesh.add(
-    ringGroup
-  );
-
-
-  mesh.userData.ringGroup =
-    ringGroup;
+  ringGroup.rotation.z = spec.ringTilt || THREE.MathUtils.degToRad(26.7);
+  mesh.add(ringGroup);
+  mesh.userData.ringGroup =ringGroup;
 }
 
-
-/* =========================================================
-   EARTH CLOUDS
-   ========================================================= */
-
-function createEarthClouds(
-  spec,
-  mesh,
-  textureLoader
-) {
-
+  function createEarthClouds(spec, mesh, textureLoader) 
+{
   const cloudGeo =
     new THREE.SphereGeometry(
       spec.r * 1.025,
@@ -7146,79 +5716,37 @@ function createEarthClouds(
       isMobile ? 32 : 48
     );
 
-
-  const cloudMat =
-    new THREE.MeshStandardMaterial({
-
+  const cloudMat =    new THREE.MeshStandardMaterial({
       color: 0xffffff,
-
       transparent: true,
-
       opacity: 0.38,
-
       depthWrite: false,
-
-      side:
-        THREE.DoubleSide
-
+      side: THREE.DoubleSide
     });
 
-
   textureLoader.load(
-
     'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png',
-
     texture => {
-
-      texture.colorSpace =
-        THREE.SRGBColorSpace;
-
-      cloudMat.map =
-        texture;
-
-      cloudMat.needsUpdate =
-        true;
-
+      texture.colorSpace = THREE.SRGBColorSpace;
+      cloudMat.map = texture;
+      cloudMat.needsUpdate = true;
     }
-
   );
 
-
-  const clouds =
-    new THREE.Mesh(
-      cloudGeo,
-      cloudMat
-    );
-
-
-  mesh.add(
-    clouds
-  );
-
-
-  mesh.userData.cloudMesh =
-    clouds;
+  const clouds = new THREE.Mesh(cloudGeo, cloudMat);
+  mesh.add(clouds);
+  mesh.userData.cloudMesh =clouds;
 }
 
-
-/* =========================================================
-   MOON
-   ========================================================= */
-
-function createMoon(
+  function createMoon(
   earthMesh,
   textureLoader,
   labelsOverlay
 ) {
-
-  const moonPivot =
-    new THREE.Group();
-
-
+  const moonPivot = new THREE.Group();
   earthMesh.add(
     moonPivot
   );
-
 
   const moonGeo =
     new THREE.SphereGeometry(
@@ -7227,42 +5755,22 @@ function createMoon(
       isMobile ? 32 : 48
     );
 
-
   const moonMat =
     new THREE.MeshStandardMaterial({
-
       color: 0xaaaaaa,
-
       roughness: 0.92,
-
       metalness: 0
-
     });
 
-
   textureLoader.load(
-
     'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/moon_1024.jpg',
-
     texture => {
-
-      texture.colorSpace =
-        THREE.SRGBColorSpace;
-
-      moonMat.map =
-        texture;
-
-      moonMat.color.set(
-        0xffffff
-      );
-
-      moonMat.needsUpdate =
-        true;
-
+      texture.colorSpace =THREE.SRGBColorSpace;
+      moonMat.map =texture;
+      moonMat.color.set(0xffffff);
+      moonMat.needsUpdate =true;
     }
-
   );
-
 
   const moonMesh =
     new THREE.Mesh(
@@ -7270,38 +5778,20 @@ function createMoon(
       moonMat
     );
 
-
-  moonMesh.position.x =
-    9;
-
-
+  moonMesh.position.x = 9;
   moonMesh.userData = {
-
     id: 'moon',
-
     name: '🌙 Moon'
-
   };
 
-
-  moonPivot.add(
-    moonMesh
-  );
-
-
+  moonPivot.add(moonMesh);
   const moonBadge =
     document.createElement(
       'div'
     );
 
-
-  moonBadge.className =
-    'planet-badge';
-
-
-  moonBadge.dataset.id =
-    'moon';
-
+  moonBadge.className ='planet-badge';
+  moonBadge.dataset.id ='moon';
 
   moonBadge.innerHTML = `
     🌙 Moon
@@ -7310,138 +5800,75 @@ function createMoon(
     </span>
   `;
 
-
   moonBadge.addEventListener(
     'click',
     event => {
-
       event.stopPropagation();
-
       selectCelestialBody(
         'moon'
       );
-
     }
   );
-
 
   labelsOverlay.appendChild(
     moonBadge
   );
-
-
+ 
   const body = {
-
     id: 'moon',
-
     pivot: moonPivot,
-
     mesh: moonMesh,
-
-    speed: 0.022,
-
+    speed: 0.005,
     rotationSpeed: 0.03,
-
     el: moonBadge,
-
     radius: 1.7
-
   };
-
-
   celestialBodies.push(
     body
   );
-
-
   interactableMeshes.push(
     moonMesh
   );
 }
 
-
-/* =========================================================
-   RAYCASTING
-   ========================================================= */
-
-function setupRaycasting() {
-
-  const raycaster =
-    new THREE.Raycaster();
-
-
-  const mouse =
-    new THREE.Vector2();
-
-
+  function setupRaycasting() {
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
   let pointerDown = null;
-
-
   renderer.domElement.addEventListener(
     'pointerdown',
     event => {
-
       pointerDown = {
-
         x: event.clientX,
-
         y: event.clientY
-
       };
-
     },
     { passive: true }
   );
 
-
   renderer.domElement.addEventListener(
     'pointerup',
     event => {
-
       if (!pointerDown) return;
-
-
-      const dx =
-        event.clientX -
-        pointerDown.x;
-
-
-      const dy =
-        event.clientY -
-        pointerDown.y;
-
-
+      const dx = event.clientX - pointerDown.x;
+      const dy = event.clientY - pointerDown.y;
       const movement =
         Math.sqrt(
           dx * dx +
           dy * dy
         );
 
-
-      /*
-       * If the user moved the finger,
-       * this was probably an orbit gesture.
-       */
-
       if (movement > 12) {
-
         pointerDown = null;
-
         return;
-
       }
 
-
-      const rect =
-        renderer.domElement.getBoundingClientRect();
-
-
+      const rect = renderer.domElement.getBoundingClientRect();
       mouse.x =
         ((event.clientX - rect.left) /
           rect.width) *
           2 -
         1;
-
 
       mouse.y =
         -(
@@ -7451,12 +5878,10 @@ function setupRaycasting() {
           2 +
         1;
 
-
       raycaster.setFromCamera(
         mouse,
         camera
       );
-
 
       const intersects =
         raycaster.intersectObjects(
@@ -7464,214 +5889,131 @@ function setupRaycasting() {
           false
         );
 
-
       if (intersects.length) {
-
-        const clicked =
-          intersects[0].object;
-
-
-        if (
-          clicked.userData &&
-          clicked.userData.id
-        ) {
-
+        const clicked = intersects[0].object;
+        if (clicked.userData && clicked.userData.id) 
+        {
           selectCelestialBody(
             clicked.userData.id
           );
-
         }
-
       }
-
-
       pointerDown = null;
-
     },
     { passive: true }
   );
 }
 
 
-/* =========================================================
-   DRAWER SWIPE
-   ========================================================= */
-
-function setupDrawerSwipe() {
-
+  function setupDrawerSwipe() {
   const drawer =
     document.getElementById(
       'info-drawer'
     );
 
-
   if (!drawer) return;
-
-
   let touchStartX = 0;
-
-
   drawer.addEventListener(
     'touchstart',
     event => {
-
       touchStartX =
         event.changedTouches[0].screenX;
-
     },
     { passive: true }
   );
 
-
   drawer.addEventListener(
     'touchend',
     event => {
-
       const touchEndX =
         event.changedTouches[0].screenX;
-
-
       if (
         touchEndX -
         touchStartX >
         80
       ) {
-
         resetToOrbitView();
-
       }
-
     },
     { passive: true }
   );
 }
 
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-function setupButtons() {
-
+  function setupButtons() {
   const resetButton =
     document.getElementById(
       'reset-orbit-btn'
     );
 
-
   if (resetButton) {
-
     resetButton.addEventListener(
       'click',
       resetToOrbitView
     );
-
   }
-
 
   const closeButton =
     document.getElementById(
       'close-drawer-btn'
     );
 
-
   if (closeButton) {
-
     closeButton.addEventListener(
       'click',
       resetToOrbitView
     );
-
   }
 }
 
 
-/* =========================================================
-   SELECT PLANET
-   ========================================================= */
-
-function selectCelestialBody(id) {
-
+  function selectCelestialBody(id) {
   const bodyObj =
     celestialBodies.find(
       body => body.id === id
     );
 
-
   if (!bodyObj) return;
-
-
-  const previousBody =
-    selectedBody;
-
-
-  selectedBody =
-    bodyObj;
-
-
-  /*
-   * Background
-   */
+  const previousBody = selectedBody;
+  selectedBody = bodyObj;
 
   focusOnCelestialObject(
     id
   );
 
-
-  /*
-   * Highlight labels
-   */
-
   celestialBodies.forEach(
     body => {
-
       if (body.el) {
-
         body.el.classList.toggle(
           'active-target',
           body === bodyObj
         );
-
       }
-
     }
   );
-
-
-  /*
-   * Portfolio data
-   */
 
   const data =
     typeof portfolioPages !== 'undefined'
       ? portfolioPages[id]
       : null;
 
-
   if (!data) {
-
     console.warn(
       `No portfolio page found for: ${id}`
     );
-
     return;
 
   }
-
 
   const content =
     document.getElementById(
       'modal-content'
     );
 
-
   if (!content) return;
 
-
   content.innerHTML = `
-
     <div class="text-center mb-5">
-
       <div
         class="
           text-[9px]
@@ -7686,7 +6028,6 @@ function selectCelestialBody(id) {
       >
         ${bodyObj.id.toUpperCase()}
       </div>
-
       <h3
         class="
           text-xl
@@ -7699,7 +6040,6 @@ function selectCelestialBody(id) {
       >
         ${data.title || bodyObj.name}
       </h3>
-
       <div
         class="
           w-16
@@ -7709,186 +6049,85 @@ function selectCelestialBody(id) {
           mt-3
         "
       ></div>
-
     </div>
-
     ${data.render()}
-
   `;
-
-
-  /*
-   * Open modal
-   */
 
   const modal =
     document.getElementById(
       'project-modal'
     );
 
-
   if (modal) {
-
-    modal.classList.remove(
-      'hidden'
-    );
-
-    modal.classList.add(
-      'flex'
-    );
-
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
   }
-
 
   document.body.classList.add(
     'overflow-hidden'
   );
 
-
-  /*
-   * Camera transition
-   */
-
   if (
     previousBody &&
     previousBody !== selectedBody
   ) {
-
     launchRocketBetweenPlanets(
       previousBody,
       bodyObj
     );
-
   }
 
   else {
-
-    isTransitioning =
-      true;
-
+    isTransitioning =true;
   }
-
-
-  /*
-   * Close mobile menu automatically
-   */
-
   const mobileMenu =
     document.getElementById(
       'mobile-menu'
     );
 
-
-  if (
-    mobileMenu &&
-    !mobileMenu.classList.contains(
-      'hidden'
-    )
+  if (mobileMenu && !mobileMenu.classList.contains('hidden')
   ) {
-
-    mobileMenu.classList.add(
-      'hidden'
-    );
-
+    mobileMenu.classList.add(      'hidden'    );
   }
 }
 
-
-/* =========================================================
-   ROCKET JOURNEY
-   ========================================================= */
-
-function launchRocketBetweenPlanets(
-  fromBody,
-  toBody
-) {
-
-  const startVec =
-    new THREE.Vector3();
-
-
-  const endVec =
-    new THREE.Vector3();
-
-
+  function launchRocketBetweenPlanets(fromBody,  toBody) 
+{
+  const startVec = new THREE.Vector3();
+  const endVec =    new THREE.Vector3();
   fromBody.mesh.getWorldPosition(
     startVec
   );
-
-
-  toBody.mesh.getWorldPosition(
-    endVec
-  );
-
-
-  rocketJourney.active =
-    true;
-
-
-  rocketJourney.startPos.copy(
-    startVec
-  );
-
-
-  rocketJourney.endPos.copy(
-    endVec
-  );
-
-
-  rocketJourney.progress =
-    0;
-
-
-  isTransitioning =
-    true;
+  toBody.mesh.getWorldPosition(endVec);
+  rocketJourney.active = true;
+  rocketJourney.startPos.copy(startVec);
+  rocketJourney.endPos.copy(endVec);
+  rocketJourney.progress =0;
+  isTransitioning =true;
 }
 
-
-/* =========================================================
-   BADGE UPDATE
-   ========================================================= */
-
-const badgeWorldPosition =
-  new THREE.Vector3();
-
-
-function updatePlanetBadges() {
-
-  const halfW =
-    window.innerWidth / 2;
-
-
-  const halfH =
-    window.innerHeight / 2;
-
+  const badgeWorldPosition =  new THREE.Vector3();
+  function updatePlanetBadges() {
+  const halfW = window.innerWidth / 2;
+  const halfH = window.innerHeight / 2;
 
   celestialBodies.forEach(
     body => {
-
       if (!body.el) return;
-
-
       body.mesh.getWorldPosition(
         badgeWorldPosition
       );
 
-
-      badgeWorldPosition.project(
-        camera
-      );
-
-
+      badgeWorldPosition.project(camera);
       const x =
         badgeWorldPosition.x *
           halfW +
         halfW;
 
-
       const y =
         -badgeWorldPosition.y *
           halfH +
         halfH;
-
 
       const visible =
         badgeWorldPosition.z < 1 &&
@@ -7897,65 +6136,38 @@ function updatePlanetBadges() {
         y >= -100 &&
         y <= window.innerHeight + 100;
 
-
       if (visible) {
-
-        body.el.style.display =
-          'block';
-
-
-        body.el.style.opacity =
-          '1';
-
-
+        body.el.style.display ='block';
+        body.el.style.opacity ='1';
         body.el.style.transform =
           `translate3d(
             ${x.toFixed(1)}px,
             ${y.toFixed(1)}px,
             0
           ) translate(-50%, -120%)`;
-
       }
-
       else {
-
-        body.el.style.display =
-          'none';
-
+        body.el.style.display =          'none';
       }
-
     }
   );
 }
 
-
-/* =========================================================
-   CAMERA TRANSITION
-   ========================================================= */
-
-function updateCameraTransition() {
-
-  if (
-    !selectedBody ||
-    !isTransitioning
-  ) {
-
+  function updateCameraTransition() {
+  if (!selectedBody || !isTransitioning) 
+  {
     return;
-
   }
-
 
   const targetPos =
     selectedBody.mesh.getWorldPosition(
       cameraTargetWorld
     );
 
-
   const distance =
     isMobile
       ? selectedBody.radius * 4.5
       : selectedBody.radius * 3.5;
-
 
   targetCamPos.set(
     targetPos.x,
@@ -7966,82 +6178,46 @@ function updateCameraTransition() {
       distance
   );
 
-
   targetLookAt.copy(
     targetPos
   );
-
-
-  /*
-   * Faster transition.
-   */
 
   camera.position.lerp(
     targetCamPos,
     isMobile ? 0.09 : 0.07
   );
 
-
   controls.target.lerp(
     targetLookAt,
     isMobile ? 0.11 : 0.08
   );
-
 
   if (
     camera.position.distanceTo(
       targetCamPos
     ) < 0.25
   ) {
-
-    isTransitioning =
-      false;
-
+    isTransitioning = false;
   }
 }
 
+  const cameraTargetWorld =  new THREE.Vector3();
+  function resetToOrbitView() {
 
-const cameraTargetWorld =
-  new THREE.Vector3();
-
-
-/* =========================================================
-   RESET ORBIT
-   ========================================================= */
-
-function resetToOrbitView() {
-
-  selectedBody =
-    null;
-
-
-  isTransitioning =
-    false;
-
-
+  selectedBody = null;
+  isTransitioning = false;
   targetCamPos.copy(
     initialCameraPos
   );
-
-
-  targetLookAt.set(
-    0,
-    0,
-    0
-  );
-
+  targetLookAt.set(0, 0, 0);
 
   celestialBodies.forEach(
     body => {
-
       if (body.el) {
-
         body.el.classList.remove(
           'active-target'
         );
-
       }
-
     }
   );
 
@@ -8051,65 +6227,34 @@ function resetToOrbitView() {
       'project-modal'
     );
 
-
   if (modal) {
-
     modal.classList.add(
       'hidden'
     );
-
     modal.classList.remove(
       'flex'
     );
-
   }
-
 
   document.body.classList.remove(
     'overflow-hidden'
   );
-
-
-  /*
-   * Smoothly return to original position.
-   */
-
-  isTransitioning =
-    true;
-
-  selectedBody =
-    null;
-
-
-  /*
-   * Manually animate reset.
-   */
-
-  resetCameraAnimation =
-    true;
+  isTransitioning =true;
+  selectedBody =null;
+  resetCameraAnimation = true;
 }
 
+  let resetCameraAnimation = false;
 
-let resetCameraAnimation =
-  false;
-
-
-/* =========================================================
-   RESET CAMERA
-   ========================================================= */
-
-function updateResetCamera() {
-
+  function updateResetCamera() {
   if (!resetCameraAnimation) {
     return;
   }
-
 
   camera.position.lerp(
     initialCameraPos,
     isMobile ? 0.08 : 0.06
   );
-
 
   controls.target.lerp(
     targetLookAt.set(
@@ -8126,111 +6271,51 @@ function updateResetCamera() {
       initialCameraPos
     ) < 0.2
   ) {
-
     camera.position.copy(
       initialCameraPos
     );
-
-    controls.target.set(
-      0,
-      0,
-      0
-    );
-
-    resetCameraAnimation =
-      false;
-
+    controls.target.set( 0, 0, 0);
+    resetCameraAnimation = false;
   }
 }
 
+  let earthSkillsAnimated = false;
 
-/* =========================================================
-   EARTH SKILLS
-   IMPORTANT:
-   DO NOT RUN THIS EVERY FRAME.
-   ========================================================= */
-
-let earthSkillsAnimated =
-  false;
-
-
-function animateEarthSkills() {
-
+  function animateEarthSkills() {
   if (earthSkillsAnimated) {
     return;
   }
-
 
   const bars =
     document.querySelectorAll(
       '.earth-skill-fill'
     );
 
-
-  if (!bars.length) {
-    return;
-  }
-
-
-  earthSkillsAnimated =
-    true;
-
-
+  if (!bars.length) {return;}
+  earthSkillsAnimated = true;
   bars.forEach(
     (bar, index) => {
-
-      const target =
-        bar.dataset.targetWidth;
-
-
-      setTimeout(
-        () => {
-
-          bar.style.width =
-            target;
-
+      const target = bar.dataset.targetWidth;
+      setTimeout(() => {
+          bar.style.width = target;
         },
         100 + index * 100
       );
-
     }
   );
 }
 
-
-/* =========================================================
-   RESIZE
-   ========================================================= */
-
-function onWindowResize() {
+  function onWindowResize() {
 
   if (!camera || !renderer) {
     return;
   }
 
-
-  const width =
-    window.innerWidth;
-
-
-  const height =
-    window.innerHeight;
-
-
-  camera.aspect =
-    width / height;
-
-
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  camera.aspect = width / height;
   camera.updateProjectionMatrix();
-
-
-  renderer.setSize(
-    width,
-    height,
-    false
-  );
-
-
+  renderer.setSize(width, height, false);
   renderer.setPixelRatio(
     Math.min(
       window.devicePixelRatio || 1,
@@ -8239,203 +6324,89 @@ function onWindowResize() {
   );
 }
 
-
-/* =========================================================
-   ANIMATION LOOP
-   ========================================================= */
-
-let animationRunning =
-  false;
-
-
-function animate() {
+  let animationRunning = false;
+  function animate() {
 
   if (animationRunning) {
     return;
   }
-
-
-  animationRunning =
-    true;
-
-
-  requestAnimationFrame(
-    animate
-  );
-
-
-  /*
-   * Planet rotation.
-   */
+  animationRunning =true;
+  requestAnimationFrame(animate);
 
   celestialBodies.forEach(
     body => {
-
       if (body.speed > 0) {
-
         body.pivot.rotation.y +=
           body.speed;
-
       }
-
 
       body.mesh.rotation.y +=
         body.rotationSpeed *
         0.08;
 
-
-      /*
-       * Earth clouds.
-       */
-
       if (
         body.mesh.userData
           .cloudMesh
       ) {
-
         body.mesh.userData
           .cloudMesh
           .rotation.y +=
             0.001;
-
       }
-
     }
   );
 
-
-  /*
-   * Camera.
-   */
-
   updateCameraTransition();
-
   updateResetCamera();
-
-
-  /*
-   * Controls.
-   */
-
   controls.update();
-
-
-  /*
-   * Labels.
-   */
-
   updatePlanetBadges();
-
-
-  /*
-   * Skills only when needed.
-   */
-
   animateEarthSkills();
-
-
-  /*
-   * Render.
-   */
-
   renderer.render(
     scene,
     camera
   );
 
-
   animationRunning =
     false;
 }
 
-
-/* =========================================================
-   INITIAL LOAD
-   ========================================================= */
-
-window.addEventListener(
+  window.addEventListener(
   'load',
   () => {
-
     initSolarSystem();
-
-    /*
-     * IMPORTANT:
-     * animate() is called ONLY ONCE.
-     */
-
     animate();
-
   },
   { once: true }
 );
 
-
-document.querySelectorAll(".glass-card").forEach((card) => {
-
+  document.querySelectorAll(".glass-card").forEach((card) => {
   card.addEventListener("pointermove", (event) => {
-
     const rect = card.getBoundingClientRect();
-
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-
     card.style.setProperty("--mx", `${x}px`);
     card.style.setProperty("--my", `${y}px`);
-
   });
 
   card.addEventListener("pointerleave", () => {
-
     card.style.setProperty("--mx", "50%");
     card.style.setProperty("--my", "50%");
-
   });
-
 });
 
-
-
-/* =========================================================
-   EMAIL JS
-   ========================================================= */
-
-if (
-  typeof emailjs !== 'undefined'
-) {
-
-  emailjs.init({
-    publicKey:
-      'IDEfYEaKsLnqo_5Q3'
-  });
-
-
-  const form =
-    document.getElementById(
-      'contactForm'
-    );
-
+  /*EMAIL JS*/
+  if (  typeof emailjs !== 'undefined') 
+{
+  emailjs.init({publicKey: 'IDEfYEaKsLnqo_5Q3'});
+  const form =document.getElementById('contactForm');
 
   if (form) {
-
-    form.addEventListener(
-      'submit',
+    form.addEventListener('submit',
       function (event) {
-
         event.preventDefault();
-
-
-        const submitButton =
-          document.getElementById(
-            'submit-btn'
-          );
-
-
+        const submitButton = document.getElementById('submit-btn');
         if (submitButton) {
-
-          submitButton.disabled =
-            true;
-
+          submitButton.disabled =true;
           submitButton.innerHTML =
             `
               <i class="
@@ -8446,17 +6417,9 @@ if (
               "></i>
               Transmitting...
             `;
-
         }
 
-
-        emailjs
-          .sendForm(
-            'service_opikbhu',
-            'template_b4zio0b',
-            this
-          )
-
+        emailjs.sendForm('service_opikbhu', 'template_b4zio0b', this)
           .then(
             () => {
               alert('Message Sent!');
@@ -8470,30 +6433,21 @@ if (
 
           .catch(
             error => {
-
-              console.error(
-                error
-              );
+              console.error(error);
               alert(
                 error.text ||
                 JSON.stringify(error)
               );
               if (submitButton) {
-
-                submitButton.disabled =
-                  false;
-
-                submitButton.innerHTML =
-                  'Send Message';
-
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Send Message';
               }
             }
-          );
-      
+          );      
         }
         );  
-      }
+  }
 }
-  </script>
+</script>
 </body>
 </html>
